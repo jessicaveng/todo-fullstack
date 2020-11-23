@@ -22,7 +22,7 @@ router.post('/', (req,res)=> {
 router.get('/', (req,res) => {
   db.getTodo()
   .then((results) => {
-    res.json({results})
+    res.json(results)
   })
   .catch((err) => {
     console.log(err);

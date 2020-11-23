@@ -5,7 +5,7 @@ export const GET_TODOS = 'GET_TODOS'
 export function setTodos(todos){
   return {
     type: GET_TODOS,
-    todos,
+    todos: todos,
   }
 }
 
