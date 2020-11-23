@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { fetchTasks } from '../actions'
+import { deleteTask, fetchTasks, removeTask } from '../actions'
 import { connect } from 'react-redux'
+
+    //get tasks from props then filters out task to be deleted by id and dispatches an action with new global state object
+function handleDelete (id, props) {
+    // const newArr = props.tasks.filter(task => task.id != id)
+    props.dispatch(removeTask(id))
+}
 
 
 function Main(props) {
@@ -23,7 +29,7 @@ function Main(props) {
                     <div className="view">
                        <input className="toggle" type="checkbox" />
                         <label>{task.task}</label>
-                        <button className="destroy"></button>
+                        <button className="destroy" onClick={() =>handleDelete(task.id, props)}></button>
                     </div>
                     <input className="edit" />
                 </li> 
@@ -44,16 +50,5 @@ function ms2p(globalState){
 export default connect(ms2p)(Main)
 
 
-/* <li>
-                <div class="view">
-                    <input class="toggle" type="checkbox" />
-                    <label>Buy a unicorn</label>
-                    <button class="destroy"></button>
-                </div>
-                <input class="edit" value="Rule the web" />
-            </li> */
-            
 
-
-// <!-- These are here just to show the structure of the list items -->
 // <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->

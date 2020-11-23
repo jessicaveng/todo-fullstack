@@ -1,7 +1,11 @@
 const connection = require('./connection')
 
-function getTasks(db = connection){
+function getTasks(page, db = connection){
+    // const pageSize = 30
     return db('todos').select()
+    // .orderBy('id', 'desc')
+    // .limit(pageSize)
+    // .offset(page * pageSize)
 }
 
 function deleteTask(id, db = connection){
