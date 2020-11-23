@@ -5,10 +5,19 @@ import {getTodos} from '../actions/getTodos'
 function TodosList(props) {
     return(
       <>
-      <ul>
-        {props.todos.map(todo => 
-        <li key={todo.id}>{todo.todo}</li>
+      <input id="toggle-all" class="toggle-all" type="checkbox" />
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+
+        {props.todos.map(todo => {
+          return (<li key={todo.id}><div class="view">
+          <input class="toggle" type="checkbox" checked />
+          <label>{todo.todo}</label>
+          <button class="destroy"></button>
+        </div></li>
+          )}
         )}
+
       </ul>
       
       </>

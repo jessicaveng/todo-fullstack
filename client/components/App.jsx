@@ -18,8 +18,11 @@ class App extends React.Component {
           <h1>todos</h1>
           <AddTodo />
         </header>
+        <section className="main">
         <TodosList todos={this.props.todos}/>
-        <section className="main"></section>
+
+
+        </section>
         <footer className="footer"></footer>
       </>
     )
