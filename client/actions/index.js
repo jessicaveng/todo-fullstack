@@ -44,3 +44,12 @@ export const addTask = (task) => {
         .catch(err => console.log(err))
     }
 }
+
+export const updateTask = (id, done) => {
+    return dispatch => {
+        return request  
+        .patch('/api/v1/todos/' + id).send({done: done})
+        .then(() => dispatch(fetchTasks()))
+        .catch(err => console.log(err))
+    }
+}
