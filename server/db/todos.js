@@ -10,7 +10,22 @@ function addTodos (data, db = connection){
   return db('todo').insert(data)
 }
 
+function updateDoneOrNot (data, db = connection){
+  console.log(data)
+  return db('todo')
+  .where('id' , data.id)
+  .update({completed: data.completed})
+}
+
+function deleteTodo (data, db = connection){
+  console.log(data)
+  return db('todo')
+  .where('id' , data.id)
+  .del(data)
+}
 module.exports={
   getTodos,
-  addTodos
+  addTodos,
+  updateDoneOrNot,
+  deleteTodo
 }

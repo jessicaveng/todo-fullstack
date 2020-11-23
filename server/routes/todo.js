@@ -27,4 +27,24 @@ router.post('/', (req,res) => {
     })
 })
 
+router.patch('/', (req,res) => {
+  console.log(req)
+  return db.updateDoneOrNot(req.body)
+    .then(() => res.json({}) )
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
+
+router.delete('/', (req,res) => {
+  console.log(req)
+  return db.deleteTodo(req.body)
+    .then(() => res.json({}) )
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
+
 module.exports = router

@@ -8,17 +8,13 @@ export const getTodoList =(todo) =>{
     }
 }
 
-export const addTodo =(addToDo)=>{
+export const doneOrNot = check =>{
   return {
-    type: 'ADD_TODO',
-    todo: addToDo
+  type: 'CHECk',
+  check
+  
   }
 }
-
-
-
-
-
 
 
 
@@ -34,12 +30,40 @@ export function getTodos(){
 
 export function postTodo (todo){
   const todoList ={todo: todo, completed: false}
-  return () => {
+  return dispatch => {
     return request
-    .post('/api/v1/todo')
-    .send(todoList)
+      .post('/api/v1/todo')
+      .send(todoList)
+      .then(res => res.body)
+      .then(()=> dispatch(getTodos()))
+    .catch(err => {
+      console.log(err)
+   })
+  }
+}
 
 
+export function checkCompleted(check){
+  return dispatch=>{
+      return request
+        .patch('/api/v1/todo')
+        .send(check)
+        .then(res => res.body)
+        .then(() => dispatch(getTodos()))
+    .catch(err => {
+      console.log(err)
+   })
+  }
+
+}
+
+export function deleteTodo(del){
+  return dispatch=>{
+    return request
+    .del('/api/v1/todo')
+    .send(del)
+    .then(res => res.body)
+    .then(() => dispatch(getTodos()))
     .catch(err => {
       console.log(err)
    })

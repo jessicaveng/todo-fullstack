@@ -5,9 +5,11 @@ const reducer = (state = [], action) =>{
     case 'GET_TODO':
       return action.todo
 
-    case 'ADD_TODO':
-      return action.updateState
-
+    case 'CHECK':
+      return {
+        ...state,
+        todo: action.check
+      }
     default:
       return state
   }

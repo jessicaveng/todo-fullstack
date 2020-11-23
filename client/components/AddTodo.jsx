@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { postTodo } from '../actions'
+import { postTodo,addTodo } from '../actions'
 
 
 
@@ -38,7 +38,10 @@ class  AddTodo extends React.Component {
 
 function mapStateToProps (globalState) {
   return {
-    todoList: globalState.TodoList,
+    todoList: globalState.todoList,
+    id: globalState.todoList,
+    completed: globalState.completed
+
   }
 }
 export default connect(mapStateToProps)(AddTodo)
