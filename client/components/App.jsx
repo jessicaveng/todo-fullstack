@@ -1,8 +1,12 @@
 import React from 'react'
 import AddTodo from './AddTodo'
+import { connect } from 'react-redux'
+import { fetchTasks } from '../actions/index'
 
 class App extends React.Component {
-  componentDidMount () {}
+  componentDidMount () {
+    this.props.dispatch(fetchTasks())
+  }
 
   render () {
     return (
@@ -18,4 +22,9 @@ class App extends React.Component {
   }
 }
 
-export default App
+function mapStateToProps(globalState){
+  return {
+    tasks: globalState.tasks
+  }
+}
+export default connect(mapStateToProps)(App)
