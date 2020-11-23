@@ -10,14 +10,8 @@ const initialState = [{
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
-    case ADD_TODO:
-      return action.todo
-
     case GET_TODOS:
       return action.todos
-
-    case DELETE_TODOS:
-      return state.filter(todo => todo.id == action.todo.id)
 
     default:
       return state

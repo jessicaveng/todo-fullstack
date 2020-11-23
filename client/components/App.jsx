@@ -4,13 +4,17 @@ import AddTodo from './AddTodo'
 import TodosList from './TodosList'
 
 import {getTodos} from '../actions/getTodos'
-import {updateDBTodo} from '../actions/addTodo'
+import {createTodo} from '../actions/addTodo'
+import {updateDBTodo} from '../actions/updateTodo'
+import {removeTodo} from '../actions/deleteTodo'
 
 
 class App extends React.Component {
   componentDidMount () {
-    // this.props.dispatch(getTodos())
-    this.props.dispatch(updateDBTodo({id:2, todo:'run', completed: 1}))
+    this.props.dispatch(getTodos())
+    // this.props.dispatch(createTodo({todo:'clean', completed: 0}))
+    // this.props.dispatch(updateDBTodo({id:4, todo:'run', completed: 1}))
+    this.props.dispatch(removeTodo({id:10, todo:'clean', completed: 0}))
   }
 
   render () {
@@ -21,7 +25,7 @@ class App extends React.Component {
           <AddTodo />
         </header>
         <section className="main">
-        <TodosList todos={this.props.todos}/>
+        <TodosList/>
 
 
         </section>
