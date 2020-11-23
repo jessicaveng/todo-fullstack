@@ -1,5 +1,5 @@
 const express = require('express')
-const todos = require('../db/todos')
+
 
 const db = require('../db/todos')
 
@@ -18,10 +18,9 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req,res) => {
+  // console.log(req.body)
   return db.addTodos(req.body)
-    .then(todo =>{
-      res.json(todo)
-    })
+    .then(() => res.json({}) )
     .catch(err => {
       console.log(err)
       res.status(500).json({ message: 'Somthing went wrong' })

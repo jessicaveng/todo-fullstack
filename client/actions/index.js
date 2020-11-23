@@ -2,7 +2,6 @@
 import request from 'superagent'
 
 export const getTodoList =(todo) =>{
-  console.log('hello')
     return{
       type: 'GET_TODO',
       todo: todo
@@ -34,9 +33,13 @@ export function getTodos(){
 }
 
 export function postTodo (todo){
+  const todoList ={todo: todo, completed: false}
   return () => {
     return request
-    .post('/api/v1/todo').send(todo)
+    .post('/api/v1/todo')
+    .send(todoList)
+
+
     .catch(err => {
       console.log(err)
    })
