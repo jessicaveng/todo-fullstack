@@ -4,11 +4,13 @@ import AddTodo from './AddTodo'
 import TodosList from './TodosList'
 
 import {getTodos} from '../actions/getTodos'
+import {updateDBTodo} from '../actions/addTodo'
 
 
 class App extends React.Component {
   componentDidMount () {
-    this.props.dispatch(getTodos())
+    // this.props.dispatch(getTodos())
+    this.props.dispatch(updateDBTodo({id:2, todo:'run', completed: 1}))
   }
 
   render () {
