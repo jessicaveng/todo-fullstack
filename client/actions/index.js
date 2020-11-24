@@ -3,13 +3,13 @@ export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 
 
-export const addTodo = (id, text) => {
+export const addTodo = (id, text, completed) => {
   return {
     type: ADD_TODO,
     todo: {
       id: id,
       text: text,
-      completed: false
+      completed: completed
     }
   }
 }
