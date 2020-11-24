@@ -7,17 +7,7 @@ function Footer (props) {
   function getCompletLength(){ 
     return props.todoList.filter(todo =>todo.completed == false).length
   }
-
-  // function getCompleted(){
-  //   console.log(props.todoList.filter(todo =>todo.completed == true))
-  //   return props.todoList.filter(todo =>todo.completed == true)[0]
-  // }
-  // function getActive(){
-  //   console.log(props.todoList.filter(todo =>todo.completed == false))
-  //   return props.todoList.filter(todo =>todo.completed == false)[0]
-  // }
-
-
+  
   const goToNewPage = (page)=>{
     props.dispatch(activePage(page))
   }

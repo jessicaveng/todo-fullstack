@@ -5,21 +5,16 @@ import { connect } from 'react-redux'
 function ShowCompleted (props) {
 
 
-  const getCompleted= ()=>{
-    console.log(props.todoList.filter(todo =>todo.completed == true))
-    return props.todoList.filter(todo =>todo.completed == true)
-  }
-
     return (
       <>
         <ul className="todo-list">
-        {getCompleted().map(todo =>{
+        {props.getCompleted().map(todo =>{
       return (
       <li key={todo.id}>
         <div className='view'>
-        <input className="toggle" type="checkbox" checked={todo.completed} onChange={()=> this.checkIfDone(todo.id)} />
+        <input className="toggle" type="checkbox" checked={todo.completed} onChange={()=> props.checkIfDone(todo.id)} />
         <label>{todo.todo}</label>
-        <button className="destroy" onClick={()=> this.removeTodo(todo.id)}></button>
+        <button className="destroy" onClick={()=> props.removeTodo(todo.id)}></button>
         </div>
         </li> 
       )  
