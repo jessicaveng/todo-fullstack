@@ -44,6 +44,9 @@ console.log(props)
             <div className="view">
             <input className="toggle" type="checkbox" id={todo.id} checked={todo.completed} onChange={() => updateCompleted (todo)}/>
             <label>{todo.todo}</label>
+          { showPopup && (
+            <Popup text="Are you sure you want to delete" confirm={() => deleteTodo(todo)} cancel={() => setShowPopup(false)} />
+          )}
             <button className="destroy" onClick={()=> setShowPopup(!showPopup)}></button>
             {/* <button className="destroy" onClick={()=> deleteTodo(todo)}></button> */}
           </div>
@@ -51,9 +54,6 @@ console.log(props)
           )}
           )}
       </ul>
-              { showPopup && (
-                <Popup text="test test" confirm={() => deleteTodo(todo)} cancel={() => setShowPopup(false)} />
-              )}
       </>
     )
 }
