@@ -6,7 +6,6 @@ function getTodo (db = connection){
 }
 
 function addTodo (todo, db = connection){
-  console.log(todo)
   return db('list')
   .insert(todo)
 }
@@ -20,8 +19,6 @@ function updateTodo (update, db = connection){
     .where('id', update.id)
     .update(update)
   })
-  .then((hello)=>console.log(hello))
-  .then(console.log("I made it"))
 }
 
 function deleteTodo (toDelete, db = connection){

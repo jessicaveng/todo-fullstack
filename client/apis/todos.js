@@ -6,14 +6,12 @@ export function getAllTodosAPI() {
 }
 
 export function addTodoAPI(todo) {
-  console.log(todo)
   return request.post('/api/v1/todo')
   .send(todo)
   .then( response => response.body)
 }
 
 export function editTodoAPI(todo) {
-  console.log(todo)
   return request.patch('/api/v1/todo')
   .send(todo)
   .then( response => response.body)

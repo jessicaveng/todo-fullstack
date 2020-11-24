@@ -16,6 +16,7 @@ function FooterComplete(props){
   function deleteTodo(){
     let completedTodos = props.todos.filter(todo=>todo.completed == 1)
     completedTodos.map(todo=>props.dispatch(removeTodo(todo)))
+    setShowPopup(!showPopup)
   }
 
   return(
@@ -40,7 +41,7 @@ function FooterComplete(props){
     </>
   )
 }
-// className={props.match.params.status == "active" ? "selected" : ""}
+
 function mapStateToProps (globalState){
   return {
     todos: globalState.getTodos
