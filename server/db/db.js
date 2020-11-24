@@ -21,9 +21,14 @@ function addTask(task, db = connection){
     return db('todos').insert(task)
 }
 
+function deleteMany(ids, db = connection){
+    return db('todos').whereIn('id', ids).del()
+}
+
 module.exports = {
     getTasks,
     addTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    deleteMany
 }

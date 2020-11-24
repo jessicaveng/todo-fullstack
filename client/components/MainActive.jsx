@@ -19,7 +19,7 @@ function toggle(id, props) {
 }
 
 
-function Main(props) {
+function MainActive(props) {
 
     const [editing, setEditing] = useState(null)
 
@@ -54,14 +54,15 @@ function Main(props) {
         props.dispatch(updateTaskDetails(id, input))
         setEditing(null)
     }
- 
+
+
     return (
-      
-        <section className="main">
+        <>
             <input id="toggle-all" className="toggle-all" type="checkbox" />
             <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list">
                 {props.tasks.map((task, key) => {
+                    if(!task.done){ 
                     return (
                         <li 
                         className={getClassName(task)}
@@ -76,7 +77,7 @@ function Main(props) {
                                     className="toggle"
                                     type="checkbox"
                                     onClick={() => toggle(task.id, props)}
-                                    defaultChecked={task.done && 'checked'}
+                                    defaultChecked={task.done ? 'checked' : ''}
                                 />
                                 <label>{task.task}</label>
                                 <button
@@ -90,11 +91,13 @@ function Main(props) {
                                 value={input} 
                                 onChange={(event) => handleChange(event)}/>
                             </form>
+                            
                         </li>
-                    )
+                    )}
+
                 })}
             </ul>
-        </section>
+        </>
     )
 }
 
@@ -105,7 +108,7 @@ function ms2p(globalState) {
     }
 }
 
-export default connect(ms2p)(Main)
+export default connect(ms2p)(MainActive)
 
 // {task.done ? "completed" : "view"} 
 

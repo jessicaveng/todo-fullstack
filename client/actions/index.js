@@ -14,6 +14,16 @@ export const getTasks = tasks => {
 //     }
 // }
 
+export const deleteBatch = ids => {
+    console.log(ids)
+    return dispatch => {
+        return request
+            .post('/api/v1/todos/deletebatch').send(ids)
+            .then(() => dispatch(fetchTasks()))
+            .catch(err => console.log(err))
+    }
+}
+
 
 export const fetchTasks = () => {
     return dispatch => {

@@ -24,14 +24,17 @@ class AddTodo extends React.Component {
 
   render(){
     return (
-      <form onSubmit={event => this.handleSubmit(event)}>
-        <input 
-        className="new-todo" 
-        placeholder="What needs to be done?" 
-        autoFocus={true}
-        onChange={(event) => this.handleChange(event)}
-        value={this.state.input}/>
-      </form>
+      <header className="header">
+        <h1>todos</h1>
+        <form onSubmit={event => this.handleSubmit(event)}>
+          <input 
+          className="new-todo" 
+          placeholder="What needs to be done?" 
+          autoFocus={true}
+          onChange={(event) => this.handleChange(event)}
+          value={this.state.input}/>
+        </form>
+      </header>
     )
   }
 }

@@ -43,6 +43,17 @@ router.delete('/:id', (req,res) => {
     })
 })
 
+router.post('/deletebatch', (req, res) => {
+    const ids = req.body
+  
+    return db.deleteMany(ids)
+    .then(() => res.json({}))
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message: 'something went wrong'}) 
+    })
+})
+
 
 
 module.exports = router
