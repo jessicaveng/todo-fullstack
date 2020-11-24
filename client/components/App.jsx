@@ -1,5 +1,6 @@
 import React from 'react'
 import AddTodo from './AddTodo'
+import ListToDos from './ListToDos'
 import { connect } from 'react-redux'
 import { fetchTasks } from '../actions/index'
 
@@ -14,6 +15,7 @@ class App extends React.Component {
         <header className="header">
           <h1>todos</h1>
           <AddTodo />
+          <ListToDos />
         </header>
         <section className="main"></section>
         <footer className="footer"></footer>
