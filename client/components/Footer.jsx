@@ -8,7 +8,7 @@ const deleteCompleted = (props) => {
   props.tasks.forEach(task => {
     task.done && idsToDelete.push(task.id) 
   })
-  console.log(idsToDelete)
+
   props.dispatch(deleteBatch(idsToDelete)) 
 }
 
@@ -21,7 +21,7 @@ function Footer (props) {
 
         <ul className="filters">
           <li>
-            <NavLink to="/" activeClassName="selected">All</NavLink>
+            <NavLink exact to="/" activeClassName="selected">All</NavLink>
           </li>
           <li>
             <NavLink to="/active" activeClassName="selected">Active</NavLink>
@@ -30,7 +30,12 @@ function Footer (props) {
             <NavLink to="/completed" activeClassName="selected">Completed</NavLink>
           </li>
         </ul>
-        {(props.tasks.find(task => task.done == 1)) && <button className="clear-completed" onClick={() => deleteCompleted(props)}>Clear completed</button> }
+        {(props.tasks.find(task => task.done == 1)) && 
+        <button 
+          className="clear-completed" 
+          onClick={() => deleteCompleted(props)}>
+            Clear completed
+        </button> }
       </footer>
     )
 }

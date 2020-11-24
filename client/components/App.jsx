@@ -18,7 +18,6 @@ function App (props) {
     return (
       <Router>
         <>
-         
             <AddTodo />
           
             <Route exact path="/" component={Main}/>
@@ -27,7 +26,6 @@ function App (props) {
               
             <Route exact path="/completed" component={MainCompleted}/>
 
-       
           <Footer />
         </>
       </Router>

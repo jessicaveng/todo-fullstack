@@ -18,7 +18,8 @@ function updateTask(id, task, db = connection){
 }
 
 function addTask(task, db = connection){
-    return db('todos').insert(task)
+    return db('todos').insert(task, 'id')
+    .then(ids => ids[0])
 }
 
 function deleteMany(ids, db = connection){

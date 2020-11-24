@@ -7,23 +7,22 @@ export const getTasks = tasks => {
     }
 }
 
-// export const deleteTask = id => {
-//     return {
-//         type: 'DEL_TASK',
-//         id: id
-//     }
-// }
-
 export const deleteBatch = ids => {
     console.log(ids)
     return dispatch => {
         return request
             .post('/api/v1/todos/deletebatch').send(ids)
-            .then(() => dispatch(fetchTasks()))
+            .then(dispatch(batchDeleted(ids)))
             .catch(err => console.log(err))
     }
 }
 
+export const batchDeleted = ids => {
+    return {
+        type: 'BATCH_DELETED',
+        ids
+    }
+}
 
 export const fetchTasks = () => {
     return dispatch => {
@@ -34,15 +33,19 @@ export const fetchTasks = () => {
     }
 }
 
-//instead of doing front end and then db delete, just do DB delete, then dispatch fetch tasks which re-fetches all tasks and re renders front end to reflect the DB. Do this if there is no performance issue which requires separating the UI from the API calls.
-
 export const removeTask = (id) => {
     return dispatch => {
-        // dispatch(deleteTask(id))
         return request  
         .delete('/api/v1/todos/' + id)
-        .then(() => dispatch(fetchTasks()))
+        .then(dispatch(taskDeleted(id)))
         .catch(err => console.log(err))
+    }
+}
+
+export const taskDeleted = id => {
+    return {
+        type: 'TASK_DELETED',
+        id
     }
 }
 
@@ -50,8 +53,18 @@ export const addTask = (task) => {
     return dispatch => {
         return request  
         .post('/api/v1/todos').send(task)
-        .then(() => dispatch(fetchTasks()))
+        .then((res) => {
+            task.id = res.body.id
+            dispatch(taskAdded(task))
+        })
         .catch(err => console.log(err))
+    }
+}
+
+export const taskAdded = (task) => {
+    return {
+        type: 'TASK_ADDED',
+        task
     }
 }
 
