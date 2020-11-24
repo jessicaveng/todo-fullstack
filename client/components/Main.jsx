@@ -51,13 +51,11 @@ function Main(props) {
 
     const handleSubmit = (event, id) => {
         event.preventDefault()
-      
         props.dispatch(updateTaskDetails(id, input))
         setEditing(null)
     }
 
     return (
-
         <>
             <input id="toggle-all" className="toggle-all" type="checkbox" />
             <label htmlFor="toggle-all">Mark all as complete</label>
@@ -66,8 +64,6 @@ function Main(props) {
                     return (
                         <li 
                         className={getClassName(task)}
-                        // {task.done ? "completed" : "view"} 
-                        // {props.liClassName}
                         key={key}
                         onDoubleClick={() => {
                             setEditing(task.id)

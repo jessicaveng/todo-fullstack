@@ -7,7 +7,7 @@ function Footer (props) {
     return (
         <footer className="footer">
         {/* <!-- This should be `0 items left` by default --> */}
-        <span className="todo-count"><strong>{props.tasks.length}</strong> item{(props.tasks.length > 1) ? 's' : ''} left</span>
+        <span className="todo-count"><strong>{props.tasks.length}</strong> item{(props.tasks.length == 1) ? '' : 's'} left</span>
         {/* <!-- Remove this if you don't implement routing --> */}
         <ul className="filters">
           <li>
