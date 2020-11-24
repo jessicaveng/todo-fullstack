@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 
 function FooterComplete(props){
-
+  console.log(props)
   function getCompleted(){
-    return props.todos.filter(todo=>todo.completed == 1).length
+    return props.todos.filter(todo=>todo.completed == 0).length
   }
   return(
 
@@ -14,13 +14,13 @@ function FooterComplete(props){
 
     <ul className="filters">
       <li>
-        <a className="selected" href="#/">All</a>
+        <a className={!props.match.params.status ? "selected" : ""} href="#/">All</a>
       </li>
       <li>
-        <a href="#/active">Active</a>
+        <a className={props.match.params.status == "active" ? "selected" : ""} href="#/active">Active</a>
       </li>
       <li>
-        <a href="#/completed">Completed</a>
+        <a className={props.match.params.status == "completed" ? "selected" : ""} href="#/completed">Completed</a>
       </li>
     </ul>
 
@@ -28,7 +28,7 @@ function FooterComplete(props){
     </>
   )
 }
-
+// className={props.match.params.status == "active" ? "selected" : ""}
 function mapStateToProps (globalState){
   return {
     todos: globalState.getTodos

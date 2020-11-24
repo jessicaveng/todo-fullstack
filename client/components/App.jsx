@@ -24,6 +24,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     return (
 
       <>
@@ -32,11 +33,14 @@ class App extends React.Component {
         <AddTodo />
       </header>
       <section className="main">
-        <Route exact path='/' component={TodosList} todos={this.props.todos}/>
+        <Route exact path='/' component={TodosList}/>
         <Route exact path='/:status' component={TodosList} />
       </section>
       <footer className="footer">
-        <FooterComplete />
+        {/* <FooterComplete/> */}
+        <Route exact path='/:status' component ={FooterComplete} />
+        <Route exact path='/' component ={FooterComplete} />
+      
       </footer>
     </>
  

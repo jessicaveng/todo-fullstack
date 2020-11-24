@@ -1,17 +1,19 @@
 // import React from 'react'
 
 import { connect } from 'react-redux'
-import React from 'react'
+import React, { useState } from 'react'
 
 import {getTodos} from '../actions/getTodos'
 import {updateDBTodo} from '../actions/updateTodo'
 import {removeTodo} from '../actions/deleteTodo'
-
+import Popup from './Popup'
 export default connect(mapStateToProps)(TodosList)
 
 
 
 function TodosList(props) {
+
+  const [showPopup, setShowPopup] = useState(false)
 
   function updateCompleted(todo){
     todo.completed = todo.completed ? 0 : 1
@@ -42,12 +44,16 @@ console.log(props)
             <div className="view">
             <input className="toggle" type="checkbox" id={todo.id} checked={todo.completed} onChange={() => updateCompleted (todo)}/>
             <label>{todo.todo}</label>
-            <button className="destroy" onClick={()=> deleteTodo(todo)}></button>
+            <button className="destroy" onClick={()=> setShowPopup(!showPopup)}></button>
+            {/* <button className="destroy" onClick={()=> deleteTodo(todo)}></button> */}
           </div>
           </li>
           )}
-        )}
+          )}
       </ul>
+              { showPopup && (
+                <Popup text="test test" confirm={() => deleteTodo(todo)} cancel={() => setShowPopup(false)} />
+              )}
       </>
     )
 }
