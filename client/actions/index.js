@@ -45,7 +45,7 @@ export const addTask = (task) => {
     }
 }
 
-export const updateTask = (id, done) => {
+export const updateTaskStatus = (id, done) => {
     return dispatch => {
         return request  
         .patch('/api/v1/todos/' + id).send({done: done})
@@ -53,3 +53,13 @@ export const updateTask = (id, done) => {
         .catch(err => console.log(err))
     }
 }
+
+export const updateTaskDetails = (id, text) => {
+    return dispatch => {
+        return request  
+        .patch('/api/v1/todos/' + id).send({task: text})
+        .then(() => dispatch(fetchTasks()))
+        .catch(err => console.log(err))
+    }
+}
+
