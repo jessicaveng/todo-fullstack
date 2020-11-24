@@ -1,4 +1,5 @@
 
+
 const connection = require('./connection')
 
 
@@ -24,8 +25,11 @@ function deleteTodo (data, db = connection){
   .del(data)
 }
 
-function getCompletedTodos (data, db = connection){
-  return db('todo').select().where('completed', data.completed == true)
+function delCompletedTodos (data, db = connection){
+  console.log(data)
+    return db('todo')
+    .delete(data)
+    .where('completed', true)
 }
 
 
@@ -34,5 +38,6 @@ module.exports={
   getTodos,
   addTodos,
   updateDoneOrNot,
-  deleteTodo
+  deleteTodo,
+  delCompletedTodos
 }

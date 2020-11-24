@@ -3,15 +3,8 @@ import { connect } from 'react-redux'
 
 
 function ShowActive (props) {
-  // const getActive = ()=> {
-  //   console.log(props.todoList.filter(todo =>todo.completed == false))
-  //   return props.todoList.filter(todo =>todo.completed == false)
-  // }
-
-
     return (
       <>
-      {console.log(props.getActive)}
       <ul className="todo-list">
         {props.getActive().map(todo =>{
           return (

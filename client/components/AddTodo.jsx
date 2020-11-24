@@ -8,9 +8,8 @@ import { postTodo} from '../actions'
 class  AddTodo extends React.Component {
   state = {
     todo: '',
-
   }
-
+  
   handleChange = event => {
     this.setState({
       todo: event.target.value
@@ -19,6 +18,10 @@ class  AddTodo extends React.Component {
 
   handleSubmit = (e) => {
     this.props.dispatch(postTodo(this.state.todo))
+
+    this.setState({
+      todo: ''
+    })
   }
   handleKeyDown = function (e, cb) {
     if (e.key === 'Enter') {
@@ -31,7 +34,7 @@ class  AddTodo extends React.Component {
     return (
       <>
       <form  onKeyDown={e => this.handleKeyDown(e)}>
-        <input className="new-todo" placeholder="What needs to be done?" onChange={this.handleChange} autoFocus={true} />
+        <input className="new-todo" placeholder="What needs to be done?" onChange={this.handleChange} value={this.state.todo} autoFocus={true} />
       </form>
       </>
     )

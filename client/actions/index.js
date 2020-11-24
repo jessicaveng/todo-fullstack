@@ -2,16 +2,16 @@
 import request from 'superagent'
 
 export const getTodoList =(todo) =>{
-    return{
-      type: 'GET_TODO',
-      todo: todo
+  return{
+    type: 'GET_TODO',
+    todo: todo
     }
 }
 
 export const doneOrNot = check =>{
   return {
-  type: 'CHECK',
-  check
+    type: 'CHECK',
+    check
   }
 }
 
@@ -32,10 +32,10 @@ export function activePage (page){
 export function getTodos(){
   return dispatch =>{
     return request
-    .get('/api/v1/todo')
-    .then(res =>{
-      return dispatch(getTodoList(res.body))
-    })
+      .get('/api/v1/todo')
+      .then(res =>{
+        return dispatch(getTodoList(res.body))
+      })
   }
 }
 
@@ -71,10 +71,26 @@ export function checkCompleted(check){
 export function deleteTodo(del){
   return dispatch=>{
     return request
-    .del('/api/v1/todo')
-    .send(del)
-    .then(res => res.body)
-    .then(() => dispatch(getTodos()))
+      .del('/api/v1/todo')
+      .send(del)
+      .then(res => res.body)
+      .then(() => dispatch(getTodos()))
+    .catch(err => {
+      console.log(err)
+   })
+  }
+}
+
+export function deleteCompleted(del){
+  let completed = del.filter(complet => {
+    if(complet.completed) return complet
+  })
+  return dispatch=>{
+    return request
+      .del('/api/v1/todo/completed')
+      .send(completed)
+      .then(res => res.body)
+      .then(() => dispatch(getTodos()))
     .catch(err => {
       console.log(err)
    })

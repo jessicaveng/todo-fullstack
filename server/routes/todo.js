@@ -46,5 +46,14 @@ router.delete('/', (req,res) => {
       res.status(500).json({ message: 'Somthing went wrong' })
     })
 })
+router.delete('/completed', (req,res) =>{
+  // console.log(req.body)
+  return db.delCompletedTodos(req.body)
+   .then(() => res.json({}) )
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
 
 module.exports = router

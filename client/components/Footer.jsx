@@ -1,17 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { activePage } from '../actions'
+
+import { activePage, deleteCompleted } from '../actions'
 
 function Footer (props) {
 
-  function getCompletLength(){ 
+  const getCompletLength=()=>{ 
     return props.todoList.filter(todo =>todo.completed == false).length
   }
   
   const goToNewPage = (page)=>{
     props.dispatch(activePage(page))
   }
-
+  const removeCompleted =()=>{
+    props.dispatch(deleteCompleted(props.todoList))
+  }
     return (
       <>
        <span className="todo-count"><strong>{getCompletLength()}</strong> item left</span>
@@ -26,6 +29,7 @@ function Footer (props) {
             <a onClick={()=> goToNewPage('completed')}>Completed</a>
           </li>
         </ul>
+        <button className="clear-completed" onClick={()=> removeCompleted()}>Clear completed</button>
       </>
     )
 
