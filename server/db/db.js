@@ -9,10 +9,14 @@ function getTodos (db = connection) {
   return db('todos').select()
 }
 
-function updateTodo (id, newText, db = connection) {
+function updateTodo (id, newText, completed, db = connection) {
+  console.log(id, newText, completed)
   return db('todos')
     .where({id: id})
-    .update({text: newText})
+    .update({
+      text: newText,
+      completed: completed
+    })
 }
 
 function deleteTodo (id, db = connection) {
