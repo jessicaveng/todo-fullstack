@@ -7,7 +7,6 @@ const reducer = (state = [], action) =>{
 
     case 'CHECK':
       return {
-        ...state,
         todo: action.check
       }
     default:

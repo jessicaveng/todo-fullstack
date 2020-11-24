@@ -10,13 +10,24 @@ export const getTodoList =(todo) =>{
 
 export const doneOrNot = check =>{
   return {
-  type: 'CHECk',
+  type: 'CHECK',
   check
-  
   }
 }
 
-
+export const completed = complet =>{
+  return{
+    type: 'GET_ALL_COMPLETED',
+    complet: complet
+  }
+}
+export function activePage (page){
+  console.log(page)
+  return {
+    type: 'CHANGE_PAGE',
+    page: page
+  }
+}
 
 export function getTodos(){
   return dispatch =>{

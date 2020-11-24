@@ -5,13 +5,10 @@ import {checkCompleted, deleteTodo}from '../actions'
 
 
 class  ShowToDo extends React.Component {
-
-checkIfDone =(id)=>{
+ checkIfDone =(id)=>{
    let onetodo = this.props.todoList.filter(todo =>{
     return todo.id == id
   })
-
-
   if(onetodo[0].completed == true){
     onetodo[0].completed = onetodo[0].completed = 0
   }else{
@@ -43,7 +40,6 @@ removeTodo =(todoItem)=>{
         </li> 
       )  
     })}
-    
     </ul>
   
 

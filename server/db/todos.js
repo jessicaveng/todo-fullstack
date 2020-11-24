@@ -23,6 +23,13 @@ function deleteTodo (data, db = connection){
   .where('id' , data.id)
   .del(data)
 }
+
+function getCompletedTodos (data, db = connection){
+  return db('todo').select().where('completed', data.completed == true)
+}
+
+
+
 module.exports={
   getTodos,
   addTodos,
