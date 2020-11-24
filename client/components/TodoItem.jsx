@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import React from 'react'
 import { connect } from 'react-redux'
 import {updateDBTodo} from '../actions/updateTodo'
 import {removeTodo} from '../actions/deleteTodo'

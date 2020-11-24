@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import {removeTodo} from '../actions/deleteTodo'
+import Popup from './Popup'
+
 
 
 function FooterComplete(props){
-  console.log(props)
+  const [showPopup, setShowPopup] = useState(false)
+
+
   function getCompleted(){
     return props.todos.filter(todo=>todo.completed == 0).length
   }
+
+  function deleteTodo(){
+    let completedTodos = props.todos.filter(todo=>todo.completed == 1)
+    completedTodos.map(todo=>props.dispatch(removeTodo(todo)))
+  }
+
   return(
 
     <>
@@ -24,7 +35,8 @@ function FooterComplete(props){
       </li>
     </ul>
 
-    <button className="clear-completed">Clear completed</button>
+    <button className="clear-completed" onClick={()=> setShowPopup(!showPopup)} >Clear completed</button>
+    {showPopup && (<Popup text="Are you sure you want to delete" confirm={() => deleteTodo()} cancel={() => setShowPopup(false)} />)}
     </>
   )
 }
