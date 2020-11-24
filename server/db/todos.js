@@ -6,6 +6,7 @@ function getTodo (db = connection){
 }
 
 function addTodo (todo, db = connection){
+  console.log(todo)
   return db('list')
   .insert(todo)
 }

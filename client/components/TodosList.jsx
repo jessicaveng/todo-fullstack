@@ -9,6 +9,8 @@ import {removeTodo} from '../actions/deleteTodo'
 
 export default connect(mapStateToProps)(TodosList)
 
+
+
 function TodosList(props) {
 
   function updateCompleted(todo){
@@ -16,22 +18,31 @@ function TodosList(props) {
     props.dispatch(updateDBTodo(todo))
   }
   function deleteTodo(todo){
-    props.dispatch()
+    props.dispatch(removeTodo(todo))
   }
-
+  function returnProps(){
+    if(props.match.params.status == "completed"){
+      return props.todos.filter(todo=>todo.completed == 1)
+    }else if(props.match.params.status == "active"){
+      return props.todos.filter(todo=>todo.completed == 0)
+    }else{
+      return props.todos
+    }
+  }
+console.log(props)
     return(
       <>
-      <input id="toggle-all" class="toggle-all" type="checkbox" />
-      <label for="toggle-all">Mark all as complete</label>
-      <ul class="todo-list">
+      <input id="toggle-all" className="toggle-all" type="checkbox" />
+      <label htmlFor="toggle-all">Mark all as complete</label>
+      <ul className="todo-list">
 
-        {props.todos.map(todo => {
+        {returnProps().map(todo => {
           return (
-            <li class={todo.completed ? "completed" : ""} key={todo.id}>
-            <div class="view">
-            <input class="toggle" type="checkbox" id={todo.id} checked={todo.completed} onChange={() => updateCompleted (todo)}/>
+            <li className={todo.completed ? "completed" : ""} key={todo.id}>
+            <div className="view">
+            <input className="toggle" type="checkbox" id={todo.id} checked={todo.completed} onChange={() => updateCompleted (todo)}/>
             <label>{todo.todo}</label>
-            <button class="destroy" onClick></button>
+            <button className="destroy" onClick={()=> deleteTodo(todo)}></button>
           </div>
           </li>
           )}
@@ -42,6 +53,7 @@ function TodosList(props) {
 }
 
 function mapStateToProps (globalState){
+
   return {
     todos: globalState.getTodos
   }
