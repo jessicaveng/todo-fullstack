@@ -17,7 +17,7 @@ export function addTaskAPI (task) {
 }
 
 export function UpdateTask (tasks) {
-    // tasks = tasks
+
     return request.patch(`/v1/${tasks.id}`)
       .send(tasks)
       .then(res => {
