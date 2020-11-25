@@ -72,8 +72,16 @@ export const updateTaskStatus = (id, done) => {
     return dispatch => {
         return request  
         .patch('/api/v1/todos/' + id).send({done: done})
-        .then(() => dispatch(fetchTasks()))
+        .then(dispatch(statusUpdated(id, done)))
         .catch(err => console.log(err))
+    }
+}
+
+export const statusUpdated = (id, done) => {
+    return {
+        type: 'TASK_STATUS_UPDATED',
+        id,
+        done
     }
 }
 

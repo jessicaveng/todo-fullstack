@@ -26,7 +26,7 @@ router.patch('/:id', (req,res) => {
     const id = req.params.id
     const newTask = req.body
     return db.updateTask(id, newTask)
-    .then(() => res.json({}))
+    .then(() => res.json({task: 'updated'}))
     .catch(err => {
         console.log(err)
         res.status(500).json({message: 'something went wrong'}) 
