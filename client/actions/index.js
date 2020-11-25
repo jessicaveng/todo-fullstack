@@ -89,8 +89,16 @@ export const updateTaskDetails = (id, text) => {
     return dispatch => {
         return request  
         .patch('/api/v1/todos/' + id).send({task: text})
-        .then(() => dispatch(fetchTasks()))
+        .then(dispatch(taskUpdated(id, text)))
         .catch(err => console.log(err))
+    }
+}
+
+export const taskUpdated = (id, text) => {
+    return {
+        type: 'TASK_DETAILS_UPDATED',
+        id,
+        text
     }
 }
 
