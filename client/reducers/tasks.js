@@ -6,22 +6,24 @@ const reducer = (state = initialState, action) => {
       return action.tasks
 
     case'ADD_TASK':
-    return[...state, action.task]
+      return[...state, action.task]
     
     case'DEL_TASK':
-    return state.filter((task) => task.id !==action.task.id)
+      return state.filter((task) => task.id !==action.id)
 
-    case 'COMPLETE_TASK':
-       return state.map((task) =>{
-         if (task.id === action.id){
-           task.completed = action.completed
+    case 'COMPLETE_TASK':  
+    console.log('got to reducer')
+      return state.map((task) =>{
+        if (task.id === action.id)
+          {
+            task.completed = (task.completed === '0') ? '1' : '0'
           }
           return task 
-       })
+        })
 
       default:
         return state
-}
+  }
 }
 
 export default reducer

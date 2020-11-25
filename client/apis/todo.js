@@ -3,7 +3,6 @@ import request from 'superagent'
 
 
 export function getAllTasksAPI(){
-  console.log('got to Api')
   return request
   .get('/api/v1/todo/')
   .then(res => res.body)
@@ -15,7 +14,7 @@ export function addTaskAPI(theState){
   const newTask = {
     task: theState,
     priority: 'high',
-    completed: false
+    completed: "0"
  
   }
   return request
@@ -24,15 +23,25 @@ export function addTaskAPI(theState){
 }
 
 
-export function deleteTaskAPI(id){
-  return request .delete('/api/v1/todo/' + id)
-}
 
-export function updateTaskAPI(task) {
-  return request.patch('/api/v1/todo')
-  .send(task)
+export function completeTaskAPI(task) {
+  console.log('got to the API')
+  console.log(task)
+  const updatedTask ={
+    id:task.id,
+    completed: (task.completed === '0' || false) ? '1' || true : '0' || false
+  }
+  console.log('updatedTask' , updatedTask)
+  
+  return request
+  .patch('/api/v1/todo/' + updatedTask.id)
+  .send(updatedTask)
   .then( response => response.body)
 }
 
 
+
+export function deleteTaskAPI(id){
+  return request .delete('/api/v1/todo/' + id)
+}
 

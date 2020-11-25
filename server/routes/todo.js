@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.get('/', (req,res) =>{
-  console.log("i MADE IT")
+  console.log("i MADE IT to get route")
   db.getAllTasks()
     .then(tasks =>{
       res.json(tasks)
@@ -31,6 +31,7 @@ router.post('/', (req,res)=>{
 
 
 router.patch('/:id',(req,res) =>{
+  console.log('i made it to the patch route')
   const updatedTask = req.body
   const id = req.params.id
 
@@ -44,8 +45,9 @@ router.patch('/:id',(req,res) =>{
     })
 })
 
-router.delete('/', (req,res)=>{
+router.delete('/:id', (req,res)=>{
 
+  const id = req.params.id
   db.deleteTask(id)
     .then(task =>{
       res.json({task})

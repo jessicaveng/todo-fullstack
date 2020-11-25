@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import AddTodo from './AddTodo'
-import {completeTask, fetchTasks} from '../actions/index'
+import {completeTask, destroyTask, fetchTasks} from '../actions/index'
 
 class App extends React.Component {
   
@@ -16,7 +16,10 @@ class App extends React.Component {
     this.props.dispatch(completeTask(task)
     )}
   
-  
+  handleDestroy = (task)=>{
+    this.props.dispatch(destroyTask(task))
+  }
+
 
   render () {
     return (
@@ -29,11 +32,11 @@ class App extends React.Component {
       
           <ul className="todo-list">
            {this.props.tasks.map((task)=>
-              <li key={task.id} className={task.completed == 1 ? 'completed' : ''} >
+              <li key={task.id} className={task.completed == "1" ? 'completed' : ''} >
                 <div className="view">
-                  <input className="toggle" type="checkbox" onChange={() =>this.handleChange(task)}/>
+                  <input className="toggle" type="checkbox" onChange={()=>this.handleChange(task)}/>
                   <label>{task.task}</label>
-                  <button className="destroy"></button>
+                  <button onClick ={()=>this.handleDestroy(task)} className="destroy"></button>
                 </div>
               </li>
            )}
