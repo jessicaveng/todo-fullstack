@@ -16,7 +16,7 @@ class App extends React.Component {
           <AddTodo />
         </header>
         <Main /> 
-        <Footer /> 
+        {/* <Footer />  */}
       </>
     )
   }

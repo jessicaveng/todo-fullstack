@@ -10,7 +10,6 @@ function getTodos (db = connection) {
 }
 
 function updateTodo (id, newText, completed, db = connection) {
-  console.log(id, newText, completed)
   return db('todos')
     .where({id: id})
     .update({

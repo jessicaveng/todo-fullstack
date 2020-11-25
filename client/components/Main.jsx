@@ -13,7 +13,6 @@ class Main extends React.Component {
   componentDidMount = () => {
     getTodos()
       .then((items) => {
-        // console.log(items)
         items.map((item) => {
           this.props.dispatch(addTodo(item.id, item.text, item.completed))
         })
@@ -39,7 +38,6 @@ class Main extends React.Component {
 
 function mapStateToProps (state) {
   const { todos } = state
-  console.log(todos)
   return { todos: todos }
 }
 

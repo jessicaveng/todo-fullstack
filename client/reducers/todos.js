@@ -13,7 +13,6 @@ const todos = (state = initialState, action) => {
       let deleteThisIndex = state.findIndex((item) => item.id == action.id)
       let deleteThisMany = 1 
       state.splice(deleteThisIndex, deleteThisMany)
-      console.log(state)
       return [...state]
 
     case 'TOGGLE_COMPLETED_TODO':
@@ -25,7 +24,9 @@ const todos = (state = initialState, action) => {
       return [...state ]
 
     case 'UPDATE_TODO':
-      return
+      let alterThisIndex = state.findIndex((item) => (item.id == action.id))
+      state[alterThisIndex].text = action.text
+      return [...state ]
 
     default: 
       return state

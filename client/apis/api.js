@@ -22,7 +22,6 @@ export function getTodos () {
 
 export function updateTodo (id, newText, completed) {
   let completedInteger = completed ? 1 : 0
-  console.log(completedInteger)
   return request.patch(rootUrl + '/todos').send({id: id, newText: newText, completed: completedInteger})
     .then(res => {
       return res.body

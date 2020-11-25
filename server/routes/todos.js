@@ -18,7 +18,6 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   return db.getTodos()
     .then((todos) => {
-      console.log(todos)
       res.json(todos)
     })
     .catch(err => logErr(err))

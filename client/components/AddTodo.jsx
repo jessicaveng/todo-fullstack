@@ -21,9 +21,8 @@ class AddTodo extends React.Component {
 
     addTodoDb(this.state.newTodo)
     .then((idObj) => {
-      console.log(this.state.newTodo);
       this.props.dispatch(addTodo(idObj.id, this.state.newTodo, false))
-      this.setState({ newTodo: "" }, () => { console.log("setstate");})
+      this.setState({ newTodo: "" })
     })
     
   }
