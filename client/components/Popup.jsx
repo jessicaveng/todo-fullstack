@@ -6,8 +6,8 @@ const Popup = (props) => {
       <div className="popup-inner">
 
       <p>{props.text}</p>
-      <button onClick={() => props.confirm()}>Destroy</button>
-      <button onClick={() => props.cancel()}>Cancel</button>
+      <button className="popup-inner-button" onClick={() => props.confirm()}>Destroy</button>
+      <button className="popup-inner-button" onClick={() => props.cancel()}>Cancel</button>
 
       </div>
     </div>

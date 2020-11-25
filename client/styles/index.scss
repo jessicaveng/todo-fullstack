@@ -365,11 +365,19 @@ html .clear-completed:active {
   position: fixed;
   top:0;
   left:0; 
-  z-index: 1; 
+  z-index: 10; 
+
   &-inner{
     background: #ededed;
     height:20vh;
     width:40vw;
+    font: 14px "Helvetica Neue", Helvetica, Arial;
+    text-align: center;
+
+    &-button{
+      padding: 20px;
+      border: black 10px;
+    }
   }
 
 }
