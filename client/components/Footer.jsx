@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {NavLink} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {removeTodo} from '../actions/deleteTodo'
 import Popup from './Popup'
@@ -27,13 +28,13 @@ function FooterComplete(props){
 
     <ul className="filters">
       <li>
-        <a className={!props.match.params.status ? "selected" : ""} href="#/">All</a>
+        <NavLink exact to= "/" activeClassName = "selected">All</NavLink> 
       </li>
       <li>
-        <a className={props.match.params.status == "active" ? "selected" : ""} href="#/active">Active</a>
+      <NavLink exact to= "/active" activeClassName = "selected">Active</NavLink> 
       </li>
       <li>
-        <a className={props.match.params.status == "completed" ? "selected" : ""} href="#/completed">Completed</a>
+      <NavLink exact to= "/completed" activeClassName = "selected">Completed</NavLink> 
       </li>
     </ul>
 

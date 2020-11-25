@@ -31,10 +31,7 @@ class App extends React.Component {
         <Route exact path='/:status' component={TodosList} />
       </section>
       <footer className="footer">
-        {/* <FooterComplete/> */}
-        <Route exact path='/:status' component ={FooterComplete} />
-        <Route exact path='/' component ={FooterComplete} />
-      
+        <FooterComplete />
       </footer>
     </>
  
