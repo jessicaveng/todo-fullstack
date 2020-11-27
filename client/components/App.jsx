@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import{Link, Route} from 'react-router-dom'
 
 import AddTodo from './AddTodo'
 import {completeTask, destroyTask, fetchTasks} from '../actions/index'
@@ -24,6 +25,9 @@ class App extends React.Component {
   render () {
     return (
       <>
+        <Route exact path ='/' component={App}/>
+        <Route exact path ='/active' component={Active}/>
+        <Route exact path ='/completed' component={Completed}/>
         <header className="header">
           <h1>todos</h1>
           <AddTodo />
@@ -48,13 +52,13 @@ class App extends React.Component {
           
           <ul className="filters">
             <li>
-              <a className="selected" href="#/">All</a>
+              <Link className="selected" to={'/'}>All</Link>
             </li>
             <li>
-              <a href="#/active">Active</a>
+              <Link to={'/active'}>Active</Link>
             </li>
             <li>
-              <a href="#/completed">Completed</a>
+              <Link to={'/completed'}>Completed</Link>
             </li>
           </ul>
         
