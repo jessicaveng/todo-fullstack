@@ -17,7 +17,6 @@ class AddTodo extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit')
     //dispatches local state data to API func
     this.props.dispatch(
       addTask({

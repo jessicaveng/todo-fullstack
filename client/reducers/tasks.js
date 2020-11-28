@@ -1,7 +1,10 @@
 const initialState = []
-import { GET_TASKS, SAVE_TASK, DELETE_TASK } from '../actions/index'
+import { GET_TASKS, SAVE_TASK, DELETE_TASK, UPDATE_TASK_STATUS } from '../actions/index'
 
-const reducer = (state = initialState, action) => {
+function reducer (state = initialState, action) {
+  let newState
+  let update
+
   switch(action.type){
   case GET_TASKS:
     return action.tasks
@@ -10,6 +13,11 @@ const reducer = (state = initialState, action) => {
     // filter through tasks saved in state and returns every state except the task whose id matches action.id
   case DELETE_TASK:
     return state.filter((task) => task.id != action.id)
+  case UPDATE_TASK_STATUS:
+    newState = [...state]
+    update = newState.find(task => task.id == action.id)
+    update.completed = action.completed 
+    return newState
   default: 
     return state
   }
