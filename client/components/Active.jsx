@@ -11,15 +11,15 @@ class Active extends React.Component{
 
 
   handleChange = (task)=>{
-    this.props.dispatch(completeTask(task)
-    )}
+    this.props.dispatch(completeTask(task))
+    this.props.dispatch(fetchActiveTasks())
+  }
   
   handleDestroy = (task)=>{
     this.props.dispatch(destroyTask(task))
+    this.props.dispatch(fetchActiveTasks())
   }
 
-  
-  
 
   render(){
     return (
@@ -63,7 +63,7 @@ class Active extends React.Component{
           </footer>
   
           </section>
-          <footer className="footer"></footer>
+          
         </>
       )
   }

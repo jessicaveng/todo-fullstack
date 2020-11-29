@@ -20,6 +20,7 @@ class AddTodo extends React.Component{
     event.preventDefault()
     this.props.dispatch(addNewTask(this.state.newTask))
     this.setState({newTask: ""})
+    this.props.dispatch(fetchActiveTasks())
   }
 
   render(){
@@ -38,7 +39,8 @@ class AddTodo extends React.Component{
 
 function mapStateToProps (globalState) {
   return {
-    tasks: globalState.tasks
+    tasks: globalState.tasks,
+    activeTasks:globalState.activeTasks
   }
 }
 
