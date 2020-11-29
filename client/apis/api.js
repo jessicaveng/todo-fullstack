@@ -2,6 +2,7 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
+// Create
 export function addTodo (text) {
   let todo = {
     text: text,
@@ -13,6 +14,7 @@ export function addTodo (text) {
     })
 }
 
+// Read
 export function getTodos () {
   return request.get(rootUrl + '/todos')
     .then(res => {
@@ -20,6 +22,7 @@ export function getTodos () {
     })
 }
 
+// Update
 export function updateTodo (id, newText, completed) {
   let completedInteger = completed ? 1 : 0
   return request.patch(rootUrl + '/todos').send({id: id, newText: newText, completed: completedInteger})
@@ -28,6 +31,7 @@ export function updateTodo (id, newText, completed) {
     })
 }
 
+// Delete
 export function deleteTodo (id) {
   return request.delete(rootUrl + '/todos').send({id: id})
     .then(res => {

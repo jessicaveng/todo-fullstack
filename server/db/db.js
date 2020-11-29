@@ -1,14 +1,16 @@
-const { where } = require('./connection')
 const connection = require('./connection')
 
+// Create
 function addTodo (todo, db = connection) {
   return db('todos').insert(todo)
 }
 
+// Read
 function getTodos (db = connection) {
   return db('todos').select()
 }
 
+// Update
 function updateTodo (id, newText, completed, db = connection) {
   return db('todos')
     .where({id: id})
@@ -18,6 +20,7 @@ function updateTodo (id, newText, completed, db = connection) {
     })
 }
 
+// Delete
 function deleteTodo (id, db = connection) {
   return db('todos')
     .where('id', id)

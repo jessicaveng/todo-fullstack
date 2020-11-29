@@ -1,4 +1,4 @@
-import { bindActionCreators } from "redux"
+import { thunk } from 'react-redux'
 
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO'

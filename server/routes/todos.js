@@ -9,12 +9,14 @@ function logErr(err) {
   res.status(500).json({ message: 'Somthing went wrong' })
 }
 
+// Create
 router.post('/', (req, res) => {
   return db.addTodo(req.body)
     .then((idArr) => res.json({ id: idArr[0] }))
     .catch(err => logErr(err))
 })
 
+// Read
 router.get('/', (req, res) => {
   return db.getTodos()
     .then((todos) => {
@@ -23,6 +25,7 @@ router.get('/', (req, res) => {
     .catch(err => logErr(err))
 })
 
+// Update
 router.patch('/', (req, res) => {
   return db.updateTodo(req.body.id, req.body.newText, req.body.completed)
     .then((todos) => {
@@ -31,6 +34,7 @@ router.patch('/', (req, res) => {
     .catch(err => logErr(err))
 })
 
+// Delete
 router.delete('/', (req, res) => {
   return db.deleteTodo(req.body.id)
     .then((response) => {
