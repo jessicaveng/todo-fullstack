@@ -4,7 +4,6 @@ const router = express.Router()
 
 
 router.get('/', (req,res) =>{
-  console.log("i MADE IT to get route")
   db.getAllTasks()
     .then(tasks =>{
       res.json(tasks)
@@ -15,6 +14,30 @@ router.get('/', (req,res) =>{
     })
 
 })
+
+router.get('/active', (req, res)=>{
+  db.getActiveTasks()
+  .then(tasks =>{
+    res.json(tasks)
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).json({message:'something went wrong'})
+  })
+})
+
+
+router.get('/completed', (req,res)=>{
+  db.getCompletedTasks()
+  .then(tasks =>{
+    res.json(tasks)
+  })
+  .catch((err)=>{
+    console.log(err)
+    res.status(500).json({message:'something went wrong'})
+  })
+})
+
 
 router.post('/', (req,res)=>{
   const newTask = req.body
@@ -31,7 +54,7 @@ router.post('/', (req,res)=>{
 
 
 router.patch('/:id',(req,res) =>{
-  console.log('i made it to the patch route')
+ 
   const updatedTask = req.body
   const id = req.params.id
 
@@ -49,6 +72,19 @@ router.delete('/:id', (req,res)=>{
 
   const id = req.params.id
   db.deleteTask(id)
+    .then(task =>{
+      res.json({task})
+    })
+    .catch((err)=>{
+      console.log(err)
+      res.status(500).json({message:'something went wrong'})
+    })
+})
+
+
+router.delete('/', (req,res)=>{
+
+  db.deleteCompletedTask()
     .then(task =>{
       res.json({task})
     })

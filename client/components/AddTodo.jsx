@@ -19,13 +19,14 @@ class AddTodo extends React.Component{
     console.log(this.state.newTask)
     event.preventDefault()
     this.props.dispatch(addNewTask(this.state.newTask))
+    this.setState({newTask: ""})
   }
 
   render(){
     return (
       <>
        <form  onSubmit={this.handleSubmit}>
-        <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} name='newTask' onChange={this.handleChange}/>
+        <input className="new-todo" placeholder="What needs to be done?" value={this.state.newTask} autoFocus={true} name='newTask' onChange={this.handleChange}/>
         </form>
       </>
     )

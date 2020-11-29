@@ -1,4 +1,4 @@
-const initialState = []
+const initialState = [{id:1, task: 'wash dishes', completed: true}]
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +8,9 @@ const reducer = (state = initialState, action) => {
     case'ADD_TASK':
       return[...state, action.task]
     
+    // case 'DEL_COMPLETED_TASKS':
+    //   return state.filter((task) => { task.completed !== true || '1'})
+
     case'DEL_TASK':
       return state.filter((task) => task.id !==action.id)
 

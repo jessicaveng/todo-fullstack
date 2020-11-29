@@ -1,13 +1,28 @@
 import request from 'superagent'
 
-
-
 export function getAllTasksAPI(){
   return request
   .get('/api/v1/todo/')
   .then(res => res.body)
 }
 
+export function deleteCompletedTasksAPI(){
+  return request
+  .delete('/api/v1/todo/')
+  .then(res => res.body)
+}
+
+export function getCompletedTasksAPI(){
+  return request
+  .get('/api/v1/todo/completed/')
+  .then(res => res.body)
+}
+
+export function getActiveTasksAPI(){
+  return request
+  .get('/api/v1/todo/active/')
+  .then(res => res.body)
+}
 
 export function addTaskAPI(theState){
   console.log(theState)

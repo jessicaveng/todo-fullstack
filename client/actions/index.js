@@ -1,9 +1,25 @@
 
-import {addTaskAPI, getAllTasksAPI, completeTaskAPI, deleteTaskAPI} from '../apis/todo'
+import {addTaskAPI, getAllTasksAPI, completeTaskAPI, deleteTaskAPI, getCompletedTasksAPI, getActiveTasksAPI, deleteCompletedTasksAPI} from '../apis/todo'
 
 export function setTasks (tasks) {
+  console.log('set tasks being called')
+  console.log(tasks)
   return {
     type: 'SET_TASKS',
+    tasks
+  }
+}
+
+export function setActiveTasks (tasks) {
+  return {
+    type: 'SET_ACTIVE_TASKS',
+    tasks
+  }
+}
+
+export function setCompletedTasks (tasks) {
+  return {
+    type: 'SET_COMPLETED_TASKS',
     tasks
   }
 }
@@ -30,7 +46,16 @@ export function deleteTask(task){
   }
 }
 
+export function deleteCompleted(){
+  return {
+    type:'DEL_COMPLETED_TASKS',
+  
+  }
+}
+
+
 export function fetchTasks() {
+  console.log('fetch tasks being called')
   return dispatch => {
     return getAllTasksAPI()
       .then(tasks => {
@@ -70,3 +95,33 @@ export function destroyTask(task){
     })
   }
 }
+
+export function fetchCompletedTasks() {
+  return dispatch => {
+    return getCompletedTasksAPI()
+      .then(tasks => {
+        dispatch(setCompletedTasks(tasks))
+        return null
+      })
+    }
+  }
+
+  export function fetchActiveTasks() {
+    return dispatch => {
+      return getActiveTasksAPI()
+        .then(tasks => {
+          dispatch(setActiveTasks(tasks))
+          return null
+        })
+      }
+    }
+
+    export function destroyCompletedTasks(){
+      console.log('got to destroy task action')
+      return dispatch=>{
+        return deleteCompletedTasksAPI()
+        .then ((tasks) =>{
+          dispatch(fetchTasks(tasks))
+        })
+      }
+    }
