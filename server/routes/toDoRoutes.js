@@ -9,7 +9,6 @@ router.get('/todo', (req, res) => {
 	console.log('route');
 	getTodos()
 		.then((todos) => {
-			console.log('hello then: ', todos);
 			res.json(todos);
 			//res.json means stringify the response & put it in JSON format so we can then deal with it this way
 		})
@@ -22,8 +21,8 @@ router.get('/todo', (req, res) => {
 //POST CRUD C = Create
 
 router.post('/todo', (req, res) => {
-    const newTask = req.body;
-    //what the use types in
+	const newTask = req.body;
+	//what the use types in
 	createTask(newTask)
 		.then((id) => {
 			res.json({ id: id });
@@ -37,36 +36,35 @@ router.post('/todo', (req, res) => {
 // PATCH CRUD U = UPDATE
 
 router.patch('/todo/:id', (req, res) => {
-    const id = req.params.id
-    const updatedTask = req.body
-    //  update by the id of the task
-    // with req.body that the user types in
+	const id = req.params.id;
+	const updatedTask = req.body;
+	//  update by the id of the task
+	// with req.body that the user types in
 
-    updateTask(id, updatedTask)
-    .then( () => {
-        res.json({this:'works'})
-        // send back an empty body or an object (for no reason, just to tell us its updating the database)
-    })
-    .catch(err => {
-        console.log(err)
-        res.status(500).json({ message: 'Something broke' })
-    })
-})
+	updateTask(id, updatedTask)
+		.then(() => {
+			res.json({ this: 'works' });
+			// send back an empty body or an object (for no reason, just to tell us its updating the database)
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({ message: 'Something broke' });
+		});
+});
 
 // CRUD D = DELETE
 
 router.delete('/todo/:id', (req, res) => {
-    const id = req.params.id
-    deleteTask(id)
-    .then( () => {
-        res.json({this:'deletes'})
-        // send back an empty body or an object (for no reason, just to tell us its updating the database)
-    })
-    .catch(err => {
-        console.log(err)
-        res.status(500).json({ message: 'Something broke' })
-    })
-})
-
+	const id = req.params.id;
+	deleteTask(id)
+		.then(() => {
+			res.json({ this: 'deletes' });
+			// send back an empty body or an object (for no reason, just to tell us its updating the database)
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({ message: 'Something broke' });
+		});
+});
 
 module.exports = router;
