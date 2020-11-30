@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { eventNames } from 'superagent'
 
-import { toggleCompletedTodo, deleteTodo, updateTodo } from '../actions'
+import { todoCompleteToggled, todoDeleted, todoUpdated } from '../actions'
 
 import { updateTodo as updateTodoDb, deleteTodo as deleteTodoDb } from '../apis/api'
 
@@ -25,7 +25,7 @@ class TodoItem extends React.Component {
     
     updateTodoDb(this.props.id, this.props.text, evt.target.checked)
     .then(() => {
-      this.props.dispatch(toggleCompletedTodo(this.props.id))
+      this.props.dispatch(todoCompleteToggled(this.props.id))
       this.setState({
         className: evt.target.checked ? "completed" : "" 
       })
@@ -34,7 +34,7 @@ class TodoItem extends React.Component {
 
   deleteHandler = () => {
     deleteTodoDb(this.props.id)
-      .then(() => this.props.dispatch(deleteTodo(this.props.id)))
+      .then(() => this.props.dispatch(todoDeleted(this.props.id)))
   }
 
   doubleClickHandler = () => {
@@ -57,7 +57,7 @@ class TodoItem extends React.Component {
 
       updateTodoDb(this.props.id, this.state.text, this.props.completed)
         .then(
-          this.props.dispatch(updateTodo(this.props.id, this.state.text))
+          this.props.dispatch(todoUpdated(this.props.id, this.state.text))
         )
     }
   }

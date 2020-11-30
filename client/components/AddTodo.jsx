@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { addTodo } from '../actions'
+import { todoAdded } from '../actions'
 import { addTodo as addTodoDb} from '../apis/api'
 import { connect } from 'react-redux'
 
@@ -21,7 +21,7 @@ class AddTodo extends React.Component {
 
     addTodoDb(this.state.newTodo)
     .then((idObj) => {
-      this.props.dispatch(addTodo(idObj.id, this.state.newTodo, false))
+      this.props.dispatch(todoAdded(idObj.id, this.state.newTodo, false))
       this.setState({ newTodo: "" })
     })
     

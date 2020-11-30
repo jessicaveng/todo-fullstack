@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootUrl = '/api/v1/todos'
 
 // Create
 export function addTodo (text) {
@@ -8,7 +8,7 @@ export function addTodo (text) {
     text: text,
     completed: false
   }
-  return request.post(rootUrl + '/todos').send(todo)
+  return request.post(rootUrl).send(todo)
     .then(res => {
       return res.body
     })
@@ -16,7 +16,7 @@ export function addTodo (text) {
 
 // Read
 export function getTodos () {
-  return request.get(rootUrl + '/todos')
+  return request.get(rootUrl)
     .then(res => {
       return res.body
     })
@@ -25,7 +25,7 @@ export function getTodos () {
 // Update
 export function updateTodo (id, newText, completed) {
   let completedInteger = completed ? 1 : 0
-  return request.patch(rootUrl + '/todos').send({id: id, newText: newText, completed: completedInteger})
+  return request.patch(rootUrl).send({id: id, newText: newText, completed: completedInteger})
     .then(res => {
       return res.body
     })
@@ -33,8 +33,13 @@ export function updateTodo (id, newText, completed) {
 
 // Delete
 export function deleteTodo (id) {
-  return request.delete(rootUrl + '/todos').send({id: id})
+  return request.delete(rootUrl).send({id: id})
     .then(res => {
       return res.body
     })
+}
+
+export function batchDeleteTodos (ids) {
+  // console.log(ids)
+  return request.delete(rootUrl + '/batchdelete').send({ids: ids})
 }

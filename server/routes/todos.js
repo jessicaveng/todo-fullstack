@@ -43,4 +43,11 @@ router.delete('/', (req, res) => {
     .catch(err => logErr(err))
 })
 
+router.delete('/batchdelete', (req, res) => {
+  console.log(req.body);
+  console.log(req.body);
+  console.log('hi');
+  // return db.batchDeleteTodo(req.body)
+})
+
 module.exports = router

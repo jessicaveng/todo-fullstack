@@ -1,12 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Footer extends React.Component {
+import { batchDeleteTodos } from '../apis/api'
+
+class Footer extends React.Component {
+
+  batchDeleteHandler = () => {
+    let idArr = []
+    this.props.todos.map((item) => {
+      if (item.completed) {
+        idArr.push(item.id)
+      } 
+    })
+    // console.log(idArr)
+    batchDeleteTodos(idArr)
+      // .then(() => batchDeletd())
+  }
 
   render () {
     return (
       <footer className="footer"> 
       {/* This should be `0 items left` by defau */}
-        <span className="todo-count"><strong>0</strong> item left</span>
+    <span className="todo-count"><strong>{this.props.todosLeft}</strong> item left</span>
         {/* Remove this if you don't implement routi */}
         <ul className="filters">
           <li>
@@ -20,8 +35,15 @@ export default class Footer extends React.Component {
           </li>
         </ul>
         {/* Hidden if no completed items are left */}
-        <button className="clear-completed">Clear completed</button>
+        <button onClick={this.batchDeleteHandler} className="clear-completed">Clear completed</button>
       </footer>
     )
   }
 }
+
+function mapStateToProps (state) {
+  const { todos, todosLeft } = state
+  return { todos, todosLeft }
+}
+
+export default connect(mapStateToProps)(Footer)

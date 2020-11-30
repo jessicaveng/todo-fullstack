@@ -5,8 +5,10 @@ export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 export const UPDATE_TODO = 'UPDATE_TODO'
 
+export const UPDATE_TODOS_LEFT = 'UPDATE_TODOS_LEFT'
 
-export const addTodo = (id, text, completed) => {
+
+export const todoAdded = (id, text, completed) => {
   return {
     type: ADD_TODO,
     todo: {
@@ -17,24 +19,34 @@ export const addTodo = (id, text, completed) => {
   }
 }
 
-export const toggleCompletedTodo = (id) => {
+export const todoCompleteToggled = (id) => {
   return {
     type: TOGGLE_COMPLETED_TODO,
     id: id
   }
 }
 
-export const deleteTodo = (id) => {
+export const todoDeleted = (id) => {
   return {
     type: DELETE_TODO,
     id: id
   }
 }
 
-export const updateTodo = (id, text) => {
+export const todoUpdated = (id, text) => {
   return {
     type: UPDATE_TODO,
     id: id,
     text: text
+  }
+}
+
+export const updateTodosLeft = (todos) => {
+
+  let todosLeft = todos.filter((item) => !item.completed).length
+
+  return {
+    type: UPDATE_TODOS_LEFT,
+    todosLeft: todosLeft
   }
 }
