@@ -27,9 +27,18 @@ function deleteTodo (id, db = connection) {
     .del()
 }
 
+function batchDeleteTodos (ids, db = connection) {
+  console.log('batchdelete');
+  return db('todos')
+    .where('completed', 1)
+    .del()
+    .then(res => console.log(res))
+}
+
 module.exports = {
   addTodo,
   getTodos,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  batchDeleteTodos
 }

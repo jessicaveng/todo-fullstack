@@ -2,10 +2,11 @@ import { thunk } from 'react-redux'
 
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_COMPLETED_TODO = 'TOGGLE_COMPLETED_TODO'
-export const DELETE_TODO = 'DELETE_TODO'
 export const UPDATE_TODO = 'UPDATE_TODO'
+export const DELETE_TODO = 'DELETE_TODO'
 
 export const UPDATE_TODOS_LEFT = 'UPDATE_TODOS_LEFT'
+export const DELETE_COMPLETED_TODOS = 'DELETE_COMPLETED_TODOS'
 
 
 export const todoAdded = (id, text, completed) => {
@@ -48,5 +49,12 @@ export const updateTodosLeft = (todos) => {
   return {
     type: UPDATE_TODOS_LEFT,
     todosLeft: todosLeft
+  }
+}
+
+export const completedTodosDeleted = (ids) => {
+  return {
+    type: DELETE_COMPLETED_TODOS,
+    ids: ids
   }
 }

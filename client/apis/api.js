@@ -33,13 +33,15 @@ export function updateTodo (id, newText, completed) {
 
 // Delete
 export function deleteTodo (id) {
-  return request.delete(rootUrl).send({id: id})
+  return request.delete(rootUrl + '/delete/' + id)
     .then(res => {
       return res.body
     })
 }
 
-export function batchDeleteTodos (ids) {
-  // console.log(ids)
-  return request.delete(rootUrl + '/batchdelete').send({ids: ids})
+export function batchDeleteTodos () {
+  return request.delete(rootUrl + '/batchdelete')
+    .then(res => {
+      return res.body
+    })
 }

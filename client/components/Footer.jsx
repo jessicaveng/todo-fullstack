@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { batchDeleteTodos } from '../apis/api'
+import { completedTodosDeleted } from '../actions'
 
 class Footer extends React.Component {
 
@@ -12,9 +13,8 @@ class Footer extends React.Component {
         idArr.push(item.id)
       } 
     })
-    // console.log(idArr)
     batchDeleteTodos(idArr)
-      // .then(() => batchDeletd())
+      .then(() => this.props.dispatch(completedTodosDeleted(idArr)))
   }
 
   render () {

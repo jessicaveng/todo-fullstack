@@ -35,8 +35,9 @@ router.patch('/', (req, res) => {
 })
 
 // Delete
-router.delete('/', (req, res) => {
-  return db.deleteTodo(req.body.id)
+router.delete('/delete/:id', (req, res) => {
+  console.log(req.params.id)
+  return db.deleteTodo(req.params.id)
     .then((response) => {
       res.json(response)
     })
@@ -44,10 +45,12 @@ router.delete('/', (req, res) => {
 })
 
 router.delete('/batchdelete', (req, res) => {
-  console.log(req.body);
-  console.log(req.body);
-  console.log('hi');
-  // return db.batchDeleteTodo(req.body)
+  return db.batchDeleteTodos(req.body.ids)
+    .then((response) => {
+      res.json(response)
+    })
+    .catch(err => logErr(err))
+
 })
 
 module.exports = router
