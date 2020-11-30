@@ -11,7 +11,7 @@ export const getToDo = () => {
 
 export const addToDo = (text) => {
   const newToDo = {
-    text: 'text'
+    text: text
   }
   return request.post(url)
     .send(newToDo)
@@ -25,7 +25,7 @@ export const editToDo = (id, newText) => {
     id: id,
     text: newText
   }
-  return request.post(url)
+  return request.patch(url)
     .send(newToDo)
     .then(res => {
       return res.body
@@ -36,9 +36,12 @@ export const deleteToDo = (id) => {
   const targetToDo = {
     id: id
   }
-  return request.post(url)
+  console.log('api ', targetToDo)
+  return request.delete(url + "/delete")
     .send(targetToDo)
+    .then(console.log(targetToDo))
     .then(res => {
+      console.log("body: " + res.body)
       return res.body
     })
 }

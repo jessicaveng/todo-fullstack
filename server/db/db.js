@@ -1,4 +1,5 @@
 const connection = require('./connection')
+const {where} = require('./connection')
 
 const getToDo = (db = connection) => {
   return db('todos')
