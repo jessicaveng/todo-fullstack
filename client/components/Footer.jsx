@@ -5,17 +5,18 @@ import{Link} from 'react-router-dom'
 
 class Active extends React.Component{
 
+
   componentDidMount () {
       this.props.dispatch(fetchActiveTasks())
     }
 
-  // componentDidUpdate (){
-  //   this.props.dispatch(fetchActiveTasks())
-  // }
-
   clearCompletedHandler (){
     this.props.dispatch(destroyCompletedTasks ())
   }
+
+
+
+
 
 
   render(){
@@ -30,7 +31,7 @@ class Active extends React.Component{
             
             <ul className="filters">
               <li>
-                <Link className="selected" to={'/'}>All</Link>
+                <Link to={'/'}>All</Link>
               </li>
               <li>
                 <Link to={'/active'}>Active</Link>
