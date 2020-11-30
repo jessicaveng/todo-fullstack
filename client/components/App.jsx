@@ -12,26 +12,7 @@ class App extends React.Component {
   componentDidMount(){
     this.props.dispatch(getTodos())
   }
-
-  checkIfDone =(id)=>{
-    let onetodo = this.props.todoList.filter(todo =>{
-     return todo.id == id
-   })
-   if(onetodo[0].completed == true){
-     onetodo[0].completed = onetodo[0].completed = 0
-   }else{
-     onetodo[0].completed = onetodo[0].completed = 1
-   }
-   this.props.dispatch(checkCompleted(onetodo[0]))
-   }
  
- removeTodo =(todoItem)=>{
-   let onetodo = this.props.todoList.filter(todo =>{
-     return todo.id == todoItem
-   })
-   this.props.dispatch(deleteTodo(onetodo[0]))
- }
-
   getActive = ()=> {
     return this.props.todoList.filter(todo =>todo.completed == false)
   }
@@ -43,22 +24,11 @@ class App extends React.Component {
   renderPage = (page)=>{
     switch(page){
       case 'showAll':
-        return <ShowToDo 
-        checkIfDone={this.checkIfDone} 
-        removeTodo={this.removeTodo}
-        />
+        return <ShowToDo />
       case 'active':
-        return <ShowActive
-          getActive={this.getActive}
-          checkIfDone={this.checkIfDone} 
-          removeTodo={this.removeTodo}
-        />
+        return <ShowActive getActive={this.getActive}/>
       case 'completed':
-        return <ShowCompleted
-        getCompleted={this.getCompleted}
-        checkIfDone={this.checkIfDone} 
-        removeTodo={this.removeTodo}
-        />
+        return <ShowCompleted getCompleted={this.getCompleted}/>
     }
   }
 
@@ -81,7 +51,6 @@ class App extends React.Component {
     )
   }
 }
-
 
 function mapStateToProps (globalState) {
   return {

@@ -55,6 +55,7 @@ export function postTodo (todo){
 
 
 export function checkCompleted(check){
+  console.log(check)
   return dispatch=>{
       return request
         .patch('/api/v1/todo')
@@ -65,7 +66,6 @@ export function checkCompleted(check){
       console.log(err)
    })
   }
-
 }
 
 export function deleteTodo(del){
@@ -91,6 +91,19 @@ export function deleteCompleted(del){
       .send(completed)
       .then(res => res.body)
       .then(() => dispatch(getTodos()))
+    .catch(err => {
+      console.log(err)
+   })
+  }
+}
+
+export function updateTodo(update){
+  return dispatch=>{
+      return request
+        .patch('/api/v1/todo/update')
+        .send(update)
+        .then(res => res.body)
+        .then(() => dispatch(getTodos()))
     .catch(err => {
       console.log(err)
    })

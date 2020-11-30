@@ -38,7 +38,7 @@ router.patch('/', (req,res) => {
 })
 
 router.delete('/', (req,res) => {
-  console.log(req)
+  console.log(req.body)
   return db.deleteTodo(req.body)
     .then(() => res.json({}) )
     .catch(err => {
@@ -49,6 +49,16 @@ router.delete('/', (req,res) => {
 router.delete('/completed', (req,res) =>{
   // console.log(req.body)
   return db.delCompletedTodos(req.body)
+   .then(() => res.json({}) )
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong' })
+    })
+})
+
+router.patch('/update', (req,res) =>{
+  console.log(req.body)
+  return db.updateTodo(req.body)
    .then(() => res.json({}) )
     .catch(err => {
       console.log(err)
