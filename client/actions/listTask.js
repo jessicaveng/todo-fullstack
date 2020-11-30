@@ -1,6 +1,6 @@
 import { listAllTaskAPI } from '../apis/Api'
 import { addTaskAPI } from '../apis/Api'
-
+import { deltaskAPI } from '../apis/Api'
 
 export function setTask (task) {
     return {
@@ -27,17 +27,35 @@ export function addTask (task) {
     }
 
 
-
 export function addtaskapis(task){
   console.log('action receieved', task)
   return dispatch => {
       return addTaskAPI(task)
-        .then(() => {
+        .then(taskID => {
+          task.id = taskID.results[0]
           dispatch(addTask(task))
         })
         .catch(err => console.log(err))
     } 
 }
+
+export function delTask (taskID) {
+  return {
+      type: 'DEL_TASK',
+      taskID
+    }
+  }
+
+
+export function deltaskfun(task) {
+  return dispatch => {
+      return deltaskAPI(task)
+      .then(() => dispatch(delTask(task))
+      )
+  }
+}
+
+
 
 
 

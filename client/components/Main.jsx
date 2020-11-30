@@ -3,27 +3,22 @@ import { connect } from "react-redux";
 import { fetchapis } from "../actions/listTask";
 // import { Link, Route } from "react-router-dom";
 // import Task from "../../server/db/task";
-// import { listAllTaskAPI } from "../apis/Api";
+// Change import to an action, and write action Properly. 
+import { deltaskfun } from "../actions/listTask";
 // import task from "../../server/db/task";
 // import task from "../../server/db/task";
-
-
 
 class Main extends React.Component {
-
-
-componentDidMount = ()=>{
-  this.props.dispatch(fetchapis())
-  .then((Task) => {
-    
-  })
-
+componentDidMount = () => { this.props.dispatch(fetchapis()).then((Task) => {})
 }
 
-  render (){
-  return (
-        
-    <section class="main">
+handleDel = (id) =>{
+  console.log('initiate with ', id)
+this.props.dispatch(deltaskfun(id))
+}
+
+render (){ return (
+   <section class="main">
     {/* <input id="toggle-all" class="toggle-all" type="checkbox" /> */}
 
     {/* <label for="toggle-all">Mark all as complete</label> */}
@@ -32,10 +27,11 @@ componentDidMount = ()=>{
         <div class="view">
             
             {this.props.task.map(task => {
-              return <li>  <input class="toggle" type="checkbox" /> <label> {task.taskDetails}</label> 
+              return <li>  <input class="toggle" type="checkbox" /> 
+              <label> {task.taskDetails}</label> 
             
               <input class="edit" value="" />
-              <button class="destroy"></button></li>
+              <button onClick = {()=>this.handleDel(task.id)} class="destroy"></button></li>
             })} 
      
         </div>
@@ -46,7 +42,7 @@ componentDidMount = ()=>{
 
 
 
-          
+
         </div>
         
 

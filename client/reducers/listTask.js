@@ -8,12 +8,15 @@ const reducer = (state = initialState, action) => {
       return action.task
     case 'ADD_TASK':
       return [...state, action.task]
-    default:
-      return state
     // case 'UPDATE_TASK':
     //     return [...state, action.task]
     //   default:
     //     return state
+    case 'DEL_TASK':
+      console.log(action)
+      return state.filter( task => task.id != action.taskID)
+      default:
+        return state
   }
 }
 
