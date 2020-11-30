@@ -7,15 +7,11 @@ const reducer = (state = initialState, action) => {
 
     case'ADD_TASK':
       return[...state, action.task]
-    
-    // case 'DEL_COMPLETED_TASKS':
-    //   return state.filter((task) => { task.completed !== true || '1'})
 
     case'DEL_TASK':
       return state.filter((task) => task.id !==action.id)
 
     case 'COMPLETE_TASK':  
-    console.log('got to reducer')
       return state.map((task) =>{
         if (task.id === action.id)
           {
@@ -23,6 +19,18 @@ const reducer = (state = initialState, action) => {
           }
           return task 
         })
+
+    case 'UPDATE_TASK':
+      console.log(action.editedTask.task)
+     
+      return state.map((task) => {
+        if(task.id === action.editedTask.id) 
+        {
+         return  action.editedTask
+
+        } 
+          return task
+        })  
 
       default:
         return state

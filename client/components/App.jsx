@@ -6,6 +6,8 @@ import AddTodo from './AddTodo'
 import Active from './Active'
 import Completed from './Completed'
 import Home from './Home'
+import Footer from './Footer'
+
 
 class App extends React.Component {
   
@@ -20,6 +22,10 @@ class App extends React.Component {
         <Route exact path ='/' component={Home}/>
         <Route exact path ='/active' component={Active}/>
         <Route exact path ='/completed' component={Completed}/>
+        <Footer/>
+
+        
+   
   
       </>
     )

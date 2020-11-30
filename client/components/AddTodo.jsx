@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { addNewTask } from '../actions'
+import { addNewTask, fetchActiveTasks } from '../actions'
+
 
 
 class AddTodo extends React.Component{
@@ -20,7 +21,7 @@ class AddTodo extends React.Component{
     event.preventDefault()
     this.props.dispatch(addNewTask(this.state.newTask))
     this.setState({newTask: ""})
-    this.props.dispatch(fetchActiveTasks())
+   
   }
 
   render(){
@@ -31,8 +32,6 @@ class AddTodo extends React.Component{
         </form>
       </>
     )
-
-
   }
 
 }

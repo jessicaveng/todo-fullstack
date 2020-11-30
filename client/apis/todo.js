@@ -25,12 +25,11 @@ export function getActiveTasksAPI(){
 }
 
 export function addTaskAPI(theState){
-  console.log(theState)
+
   const newTask = {
     task: theState,
     priority: 'high',
     completed: "0"
- 
   }
   return request
       .post('/api/v1/todo/').send(newTask)
@@ -40,13 +39,11 @@ export function addTaskAPI(theState){
 
 
 export function completeTaskAPI(task) {
-  console.log('got to the API')
-  console.log(task)
+
   const updatedTask ={
     id:task.id,
     completed: (task.completed === '0' || false) ? '1' || true : '0' || false
   }
-  console.log('updatedTask' , updatedTask)
   
   return request
   .patch('/api/v1/todo/' + updatedTask.id)
@@ -55,8 +52,15 @@ export function completeTaskAPI(task) {
 }
 
 
-
 export function deleteTaskAPI(id){
   return request .delete('/api/v1/todo/' + id)
 }
 
+
+export function updateTaskAPI(editedTask){
+  console.log(editedTask)
+  return request
+  .patch('/api/v1/todo/' + editedTask.id)
+  .send(editedTask)
+  .then(res => res.body)
+}

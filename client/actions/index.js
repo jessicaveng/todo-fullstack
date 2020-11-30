@@ -1,5 +1,14 @@
 
-import {addTaskAPI, getAllTasksAPI, completeTaskAPI, deleteTaskAPI, getCompletedTasksAPI, getActiveTasksAPI, deleteCompletedTasksAPI} from '../apis/todo'
+import {
+  addTaskAPI,
+  getAllTasksAPI,
+  completeTaskAPI,
+  deleteTaskAPI,
+  getCompletedTasksAPI,
+  getActiveTasksAPI,
+  deleteCompletedTasksAPI,
+  updateTaskAPI
+}from '../apis/todo'
 
 export function setTasks (tasks) {
   console.log('set tasks being called')
@@ -53,6 +62,13 @@ export function deleteCompleted(){
   }
 }
 
+export function setUpdatedTask(editedTask){
+  return {
+    type:'UPDATE_TASK',
+    editedTask
+  }
+}
+
 
 export function fetchTasks() {
   console.log('fetch tasks being called')
@@ -70,6 +86,7 @@ export function addNewTask(newTask){
     return addTaskAPI(newTask)
     .then (newTask =>{
       dispatch(addTask(newTask))
+      dispatch(fetchActiveTasks())
     })
   }
 }
@@ -80,6 +97,7 @@ export function completeTask(task){
     return completeTaskAPI(task)
     .then(()=>{
       dispatch(changeToCompleted(task.id))
+      dispatch(fetchActiveTasks())
     })
   }
 }
@@ -125,3 +143,14 @@ export function fetchCompletedTasks() {
         })
       }
     }
+
+    export function updateTask(editedTask){
+      console.log('got to action')
+      return dispatch=>{
+        return updateTaskAPI(editedTask)
+        .then(()=>{
+          dispatch(setUpdatedTask(editedTask))
+        })
+      }
+    }
+    

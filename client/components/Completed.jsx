@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { fetchCompletedTasks, destroyTask, completeTask } from '../actions'
-import{Link} from 'react-router-dom'
+
 
 class Completed extends React.Component{
 
@@ -23,7 +23,6 @@ class Completed extends React.Component{
   render(){
     return (
         <>
-         
           <header className="header">
             <h1>todos</h1>
            
@@ -41,28 +40,7 @@ class Completed extends React.Component{
                 </li>
              )}
             </ul>
-  
-          <footer className="footer">
-        
-            <span className="todo-count"><strong>0</strong> item left</span>
-            
-            <ul className="filters">
-              <li>
-                <Link className="selected" to={'/'}>All</Link>
-              </li>
-              <li>
-                <Link to={'/active'}>Active</Link>
-              </li>
-              <li>
-                <Link to={'/completed'}>Completed</Link>
-              </li>
-            </ul>
-          
-            <button className="clear-completed">Clear completed</button>
-          </footer>
-  
           </section>
-          <footer className="footer"></footer>
         </>
       )
 
