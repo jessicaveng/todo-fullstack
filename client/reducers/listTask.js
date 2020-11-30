@@ -1,3 +1,4 @@
+import task from "../../server/db/task"
 
 const initialState = []
 
@@ -8,18 +9,17 @@ const reducer = (state = initialState, action) => {
       return action.task
     case 'ADD_TASK':
       return [...state, action.task]
-    // case 'UPDATE_TASK':
-    //     return [...state, action.task]
-    //   default:
-    //     return state
     case 'DEL_TASK':
       console.log(action)
       return state.filter( task => task.id != action.taskID)
       default:
         return state
+    case 'UPDATE_TASK':
+          return state.map( task => task.id != action.taskID )
+        default:
+          return state
   }
 }
-
 
 
 

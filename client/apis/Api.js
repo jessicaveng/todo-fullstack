@@ -13,17 +13,17 @@ export function addTaskAPI (task) {
     .then(response => response.body)
 }
 
-// export function UpdateTask (tasks) {
+export function updateTaskAPI (tasks) {
 
-//     return request.patch(`/v1/${tasks.id}`)
-//       .send(tasks)
-//       .then(res => {
-//         validateNoSnakeCase(res.body)
-//         validatePostResponse('PATCH', 'v1/:id', res.body)
-//         return res.body
-//       })
-//       .catch(errorHandler('PATCH', '/v1/:id'))
-//   }
+    return request.patch(`/v1/${tasks.id}`)
+      .send(tasks)
+      .then(res => {
+        validateNoSnakeCase(res.body)
+        validatePostResponse('PATCH', 'v1/:id', res.body)
+        return res.body
+      })
+      .catch(errorHandler('PATCH', '/v1/:id'))
+  }
 
 export function deltaskAPI (id) {
   console.log('we delete api fired',id)

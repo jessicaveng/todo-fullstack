@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import { fetchapis } from "../actions/listTask";
 // import { Link, Route } from "react-router-dom";
 // import Task from "../../server/db/task";
-// Change import to an action, and write action Properly. 
+
 import { deltaskfun } from "../actions/listTask";
-// import task from "../../server/db/task";
-// import task from "../../server/db/task";
+import { updatetaskfun } from "../actions/listTask"
+
+
 
 class Main extends React.Component {
 componentDidMount = () => { this.props.dispatch(fetchapis()).then((Task) => {})
 }
+
+handleUpdate = (id) =>{
+  console.log(id)
+  this.props.dispatch(updatetaskfun(id))}
 
 handleDel = (id) =>{
   console.log('initiate with ', id)
@@ -28,7 +33,7 @@ render (){ return (
             
             {this.props.task.map(task => {
               return <li>  <input class="toggle" type="checkbox" /> 
-              <label> {task.taskDetails}</label> 
+              <label ondblclick = {() => this.handleUpdate (task.id)} >{task.taskDetails}</label> 
             
               <input class="edit" value="" />
               <button onClick = {()=>this.handleDel(task.id)} class="destroy"></button></li>

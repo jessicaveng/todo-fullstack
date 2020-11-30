@@ -1,6 +1,7 @@
 import { listAllTaskAPI } from '../apis/Api'
 import { addTaskAPI } from '../apis/Api'
 import { deltaskAPI } from '../apis/Api'
+import { updateTaskAPI } from '../apis/Api'
 
 export function setTask (task) {
     return {
@@ -55,6 +56,19 @@ export function deltaskfun(task) {
   }
 }
 
+export function updTask (taskID) {
+  return {
+      type: 'UPD_TASK',
+      taskID
+    }
+  }
+
+export function updatetaskfun(task) {
+  return dispatch => {
+    return updateTaskAPI(task)
+    .then(()=> dispatch(updTask)(task))
+  }
+}
 
 
 

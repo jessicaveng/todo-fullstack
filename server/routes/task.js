@@ -27,16 +27,6 @@ router.post('/', (req, res) => {
 		});
 });
 
-// router.delete('/', (req, res) => {
-// 	db.delete(req.body)
-// 		.then((results) => {
-// 			res.json({ results });
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 			res.status(500).json({ message: 'Somthing went wrong' });
-// 		});
-// });
 
 router.delete('/:id', (req,res) => {
 	db.deltask(req.params.id)
@@ -50,5 +40,23 @@ router.delete('/:id', (req,res) => {
 	})
 
 })
+
+// Update a task, needs to change database, this must change taskDetials.
+
+router.patch('/:id',(req,res) =>{
+ 
+	const updatedTask = req.body
+	const id = req.params.id
+  
+	db.updateTask(id, updatedTask)
+	  .then(updatedItems =>{
+		res.json({updatedItems})
+	  })
+	  .catch((err)=>{
+		console.log(err)
+		res.status(500).json({message:'something went wrong'})
+	  })
+  })
+  
 
 module.exports = router;
