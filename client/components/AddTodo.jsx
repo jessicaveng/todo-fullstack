@@ -32,7 +32,8 @@ class AddTodo extends React.Component {
 
   render() {
     return (
-      <div>
+      <header className="header">
+         <h1>todos</h1>
         <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleChange}
@@ -57,7 +58,7 @@ class AddTodo extends React.Component {
           </select> */}
         
         </form>
-      </div>
+      </header>
     );
   }
 }

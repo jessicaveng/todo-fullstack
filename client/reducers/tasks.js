@@ -1,9 +1,7 @@
 const initialState = []
-import { GET_TASKS, SAVE_TASK, DELETE_TASK, UPDATE_TASK_STATUS } from '../actions/index'
+import { GET_TASKS, SAVE_TASK, DELETE_TASK, UPDATE_TASK_STATUS, UPDATE_TASK_DETAILS } from '../actions/index'
 
 function reducer (state = initialState, action) {
-  let newState
-  let update
 
   switch(action.type){
   case GET_TASKS:
@@ -14,10 +12,14 @@ function reducer (state = initialState, action) {
   case DELETE_TASK:
     return state.filter((task) => task.id != action.id)
   case UPDATE_TASK_STATUS:
-    newState = [...state]
-    update = newState.find(task => task.id == action.id)
-    update.completed = action.completed 
-    return newState
+    // let newState = [...state]
+    let toUpdate = [...state].find(task => task.id == action.id)
+    toUpdate.completed = action.completed 
+    return [...state]
+  case UPDATE_TASK_DETAILS:
+    let detailsToUpdate = [...state].find(task => task.id == action.id)
+    detailsToUpdate.task = action.input
+    return [...state]
   default: 
     return state
   }

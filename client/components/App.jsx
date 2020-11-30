@@ -1,8 +1,12 @@
 import React from 'react'
 import AddTodo from './AddTodo'
 import ListToDos from './ListToDos'
+import Footer from './Footer'
+import CompletedList from './CompletedList'
+import ActiveList from './ActiveList'
 import { connect } from 'react-redux'
 import { fetchTasks } from '../actions/index'
+import { Route } from 'react-router-dom'
 
 class App extends React.Component {
   componentDidMount () {
@@ -12,14 +16,11 @@ class App extends React.Component {
   render () {
     return (
       <>
-        <header className="header">
-          <h1>todos</h1>
-          <AddTodo />
-        </header>
-        <section className="main">
-          <ListToDos />
-        </section>
-        <footer className="footer"></footer>
+        <AddTodo/>
+        <Route exact path="/" component={ListToDos}/>
+        <Route exact path="/active" component={ActiveList}/>
+        <Route exact path="/completed" component={CompletedList}/>
+        <Footer />
       </>
     )
   }

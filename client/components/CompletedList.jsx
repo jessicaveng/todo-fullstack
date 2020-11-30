@@ -2,10 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { deleteTask, updateTaskStatus, updateTaskDetails } from "../actions/index";
 
-
-//toggle - takes in the id & task info of the task being clicked & then gets the task array from GS, and finds the task which mates the id of the task being passed in. If the task is set as completed set to not completed & if task set to not completed set to completed - works to toggle on & off.
-
-class ListToDos extends React.Component {
+class CompletedList extends React.Component {
  state = {
    editing: '',
    input: ''
@@ -17,21 +14,17 @@ class ListToDos extends React.Component {
    })
  }
  setEditing = (taskID) => {
-  //  console.log('got to set editing')
+   console.log('got to set editing')
    this.setState({
      editing: taskID
    })
-  //  console.log(taskID)
+   console.log(taskID)
  }
 
   toggle = (id) => {
     let updatedTask = this.props.tasks.find(task => {
       if (task.id == id) {
-        // if (task.completed) {
-        //   task.completed = 0
-        // } else {
-        //   task.completed = 1
-        // }
+   
         task.completed ? task.completed = 0 : task.completed = 1
         return task
       }
@@ -45,12 +38,15 @@ class ListToDos extends React.Component {
 
     handleSubmit = (event, id) => {
       event.preventDefault()
+      console.log('helloAgain')
       this.props.dispatch(updateTaskDetails(id, this.state.input))
       this.setEditing(null)
     }
 
     setClassName = task => {
+      console.log('hello')
     if (task.id == this.state.editing) {
+      console.log('editing')
       return 'editing'
     }
     return task.completed ? 'completed' : 'view'
@@ -63,6 +59,7 @@ class ListToDos extends React.Component {
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">
       {this.props.tasks.map((task) => {
+        if (task.completed){
         return (
           <>
             <li className={this.setClassName(task)}
@@ -86,7 +83,7 @@ class ListToDos extends React.Component {
               </form> 
             </li>
           </>
-        )
+        )}
       })}
     </ul>
   </section>
@@ -100,4 +97,4 @@ function mapStateToProps(globalState) {
   }
 }
 
-export default connect(mapStateToProps)(ListToDos);
+export default connect(mapStateToProps)(CompletedList);
