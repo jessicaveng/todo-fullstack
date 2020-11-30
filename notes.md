@@ -11,3 +11,20 @@ npm run knex migrate:latest
 npm run knex seed:run
 
 npm run knex migrate:rollback
+
+<!-- set up for api -->
+
+Db funcs
+Create
+Read
+Update
+Delete
+
+
+<!-- Routes -->
+
+Bring in express, express router and DB funcs
+
+router.get, post, put, delete
+
+<!-- React Components -->

@@ -5,9 +5,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('todos').insert([
-        {id: 1, task: 'do stuff'},
-        {id: 2, task: 'something else needs to be done'},
-        {id: 3, task: 'wow so much stuff to do'}
+        {id: 1, task: 'do stuff', priority: 'low', completed: false},
+        {id: 2, task: 'something else needs to be done', priority: 'low', completed: false},
+        {id: 3, task: 'wow so much stuff to do', priority: 'low', completed: false}
       ]);
     });
 };
