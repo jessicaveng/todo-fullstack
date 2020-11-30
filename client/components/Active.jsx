@@ -6,11 +6,11 @@ import TodoItem from './TodoItem'
 
 
 
-class Completed extends React.Component {
+class Active extends React.Component {
   
   render () {
     return (
-      <section className="Completed">
+      <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
@@ -30,4 +30,4 @@ function mapStateToProps (state) {
   return { todos: todos }
 }
 
-export default connect(mapStateToProps)(Completed)
+export default connect(mapStateToProps)(Active)

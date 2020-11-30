@@ -1,20 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { batchDeleteTodos } from '../apis/api'
+import { deleteCompletedTodos } from '../apis/api'
 import { completedTodosDeleted } from '../actions'
+
+import { NavLink } from 'react-router-dom'
 
 class Footer extends React.Component {
 
-  batchDeleteHandler = () => {
-    let idArr = []
-    this.props.todos.map((item) => {
-      if (item.completed) {
-        idArr.push(item.id)
-      } 
-    })
-    batchDeleteTodos(idArr)
-      .then(() => this.props.dispatch(completedTodosDeleted(idArr)))
+  deleteCompletedHandler = () => {
+    deleteCompletedTodos()
+      .then(() => this.props.dispatch(completedTodosDeleted()))
   }
 
   render () {
@@ -25,17 +21,17 @@ class Footer extends React.Component {
         {/* Remove this if you don't implement routi */}
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <NavLink exact activeClassName="selected" to="/">All</NavLink>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <NavLink exact activeClassName="selected" to="/active" >Active</NavLink>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <NavLink exact activeClassName="selected" to="/completed" >Completed</NavLink>
           </li>
         </ul>
         {/* Hidden if no completed items are left */}
-        <button onClick={this.batchDeleteHandler} className="clear-completed">Clear completed</button>
+        <button onClick={this.deleteCompletedHandler} className="clear-completed">Clear completed</button>
       </footer>
     )
   }

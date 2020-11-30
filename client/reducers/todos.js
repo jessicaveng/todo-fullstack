@@ -29,7 +29,7 @@ const todos = (state = initialState, action) => {
       return [...state ]
 
     case 'DELETE_COMPLETED_TODOS':
-      let newState = state.filter(item => !action.ids.includes(item.id))
+      let newState = state.filter(item => !item.completed)
       return newState
 
     default: 

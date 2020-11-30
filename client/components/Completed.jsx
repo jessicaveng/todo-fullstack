@@ -1,16 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
 import TodoItem from './TodoItem'
 
 
 
-class Main extends React.Component {
-
+class Completed extends React.Component {
   render () {
     return (
-      <section className="completed">
+      <section className="main">
         <input id="toggle-all" className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
@@ -30,4 +28,4 @@ function mapStateToProps (state) {
   return { todos: todos }
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps)(Completed)

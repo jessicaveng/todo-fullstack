@@ -39,7 +39,7 @@ export function deleteTodo (id) {
     })
 }
 
-export function batchDeleteTodos () {
+export function deleteCompletedTodos () {
   return request.delete(rootUrl + '/batchdelete')
     .then(res => {
       return res.body
