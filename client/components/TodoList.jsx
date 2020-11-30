@@ -25,7 +25,8 @@ function TodoList (props) {
               <TodoItem todo={todo} />
             </>
           )
-        })}
+        }
+        )}
       </ul>
     </>
   )
