@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-// import stuff from './stuff'
+import getTodos from './getTodos'
 
 export default combineReducers({
-  // stuff
+  getTodos
 })
