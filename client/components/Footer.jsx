@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Footer = (props) => {
   return (
@@ -11,19 +11,19 @@ const Footer = (props) => {
       {/* <!-- Remove this if you don't implement routing --> */}
       <ul className="filters">
         <li>
-          <Link to='/' className="selected">
+          <NavLink exact to="/" activeClassName="selected">
             All
-          </Link>
+          </NavLink>
         </li>
         <li>
-        <Link to='/active'>
+        <NavLink to="/active" activeClassName="selected">
           active
-        </Link>
+        </NavLink>
         </li>
         <li>
-        <Link to='/completed'>
+        <NavLink to="/completed" activeClassName="selected" >
           Completed
-        </Link>
+        </NavLink>
         </li>
       </ul>
       {/* <!-- Hidden if no completed items are left ↓ --> */}

@@ -17,14 +17,15 @@ class App extends React.Component {
     return (
       <>
         <AddTodo/>
-        <Route exact path="/" component={ListToDos}/>
-        <Route exact path="/active" component={ActiveList}/>
-        <Route exact path="/completed" component={CompletedList}/>
+        <Route path="/" component={ListToDos}/>
+        {/* <Route exact path="/active" component={ListToDos}/> */}
+        {/* <Route exact path="/completed" component={CompletedList}/>  */}
         <Footer />
       </>
     )
   }
 }
+
 
 function mapStateToProps(globalState){
   return {

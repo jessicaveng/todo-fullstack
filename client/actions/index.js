@@ -20,6 +20,7 @@ export function fetchTasks() {
 
 
 export const updateTaskStatus = (id, completed) => {
+   
   return dispatch => {
       return request  
       .patch('/api/v1/tasks/' + id).send({completed: completed})
@@ -37,7 +38,7 @@ export const updateTaskStatus = (id, completed) => {
 // }
 
 export const updateTaskDetails = (id, input) => {
-  console.log(input, id)
+
   return dispatch => {
     return request
     .patch('/api/v1/tasks/' + id).send({task: input})

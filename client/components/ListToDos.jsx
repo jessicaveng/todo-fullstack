@@ -27,7 +27,7 @@ class ListToDos extends React.Component {
   toggle = (id) => {
     let updatedTask = this.props.tasks.find(task => {
       if (task.id == id) {
-        // if (task.completed) {
+        // if (task.completed is truthy) {
         //   task.completed = 0
         // } else {
         //   task.completed = 1
@@ -55,16 +55,39 @@ class ListToDos extends React.Component {
     }
     return task.completed ? 'completed' : 'view'
   }
+
+    setStatus = tasks => {
+    switch(this.props.location.pathname){
+      case "/completed":
+        return tasks.filter((task) => task.completed == 1 )
+      case "/active":
+        return tasks.filter((task) => task.completed == 0 )
+      default:
+        return tasks
+  }
+}
+
+  // switch(this.props.location.pathname){
+  //   case "/completed":
+  //     tasks = tasks.filter((task) => task.completed == 1 )
+  //     break
+  //   case "/active":
+  //     tasks = tasks.filter((task) => task.completed == 0 )
+  // }
   
   render(){
+
+  
   return(
-  <section className="main">
+    <section className="main">
     <input id="toggle-all" className="toggle-all" type="checkbox" />
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">
-      {this.props.tasks.map((task) => {
+      
+      {this.setStatus(this.props.tasks).map((task) => {
+        
         return (
-          <>
+          <div key={task.id} >
             <li className={this.setClassName(task)}
               onDoubleClick={() =>
                  {this.setEditing(task.id)
@@ -72,8 +95,7 @@ class ListToDos extends React.Component {
               <div className="view">
                 <input className="toggle"
                   type="checkbox"
-                  onClick={() => this.toggle(task.id, this.props)}
-                  defaultChecked={task.completed && 'checked'} />
+                  onClick={() => this.toggle(task.id, this.props)} defaultChecked={task.completed} />
                 <label>{task.task}</label>
                 <button onClick={() => this.props.dispatch(deleteTask(task.id))} 
                 className="destroy"></button>
@@ -85,15 +107,13 @@ class ListToDos extends React.Component {
                 onChange={(event) => this.handleChange(event)}/>
               </form> 
             </li>
-          </>
+          </div>
         )
       })}
     </ul>
   </section>
   )}}
   
-
-
 function mapStateToProps(globalState) {
   return {
     tasks: globalState.tasks,

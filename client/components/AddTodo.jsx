@@ -19,9 +19,9 @@ class AddTodo extends React.Component {
     e.preventDefault();
     //dispatches local state data to API func
     this.props.dispatch(
-      addTask({
-        task: this.state.task,
-      })
+      addTask(
+        this.state
+      )
     );
     //resets local state to empty
      this.setState({
