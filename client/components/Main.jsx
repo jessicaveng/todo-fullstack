@@ -13,72 +13,87 @@ class Main extends React.Component {
 componentDidMount = () => { this.props.dispatch(fetchapis()).then((Task) => {})
 }
 
-handleUpdate = (id) =>{
-  console.log(id)
-  this.props.dispatch(updatetaskfun(id))}
+state = {
+  editcurrent: null,
+  writeUpdate: null,
+}
+
+handleonClick = (id) =>{
+  this.setState({editcurrent: id }
+    )
+  }
+
+changeClassName = (editTaskID) => {
+// console.log(editTaskID === this.state.editcurrent )
+if (editTaskID === this.state.editcurrent){
+  return 'editing'
+} else {
+  return 'view'
+}
+}
+
+// 1. type and update state
+// 2. Hit Enter & and handleUpdate
+
+// Enter = 13
+
+updateValue = (value) =>{
+this.setState({writeUpdate: value}
+  )
+}
+
+handleUpdate = (e) =>{
+  if (e.key === 'Enter'){
+  return (this.props.dispatch(updatetaskfun(this.state)))
+  }
+}
+
+
+
+
+
+// Onclick
+// Summit on Enter
+
+
 
 handleDel = (id) =>{
   console.log('initiate with ', id)
 this.props.dispatch(deltaskfun(id))
 }
 
+
 render (){ return (
-   <section class="main">
+   <section className="main">
     {/* <input id="toggle-all" class="toggle-all" type="checkbox" /> */}
 
     {/* <label for="toggle-all">Mark all as complete</label> */}
-    <ul class="todo-list">
+    <ul className="todo-list">
 
-        <div class="view">
             
             {this.props.task.map(task => {
-              return <li>  <input class="toggle" type="checkbox" /> 
-              <label ondblclick = {() => this.handleUpdate (task.id)} >{task.taskDetails}</label> 
+              return <li onDoubleClick = { () => this.handleonClick(task.id)} className ={this.changeClassName(task.id)} 
+              >  
+          <div className="view">
+                
+              <input className="toggle" type="checkbox"  /> 
+              <label>
+                {task.taskDetails}
+              </label> 
             
-              <input class="edit" value="" />
-              <button onClick = {()=>this.handleDel(task.id)} class="destroy"></button></li>
+              <button onClick = {()=>this.handleDel(task.id)} class="destroy"></button>
+              </div>
+              <input 
+              type = 'text'              
+              className="edit"
+              value = {this.state.writeUpdate}
+              onChange={(e) => this.updateValue(e.target.value)} 
+              onKeyDown={(e) => this.handleUpdate(e)}
+              // onKeyDown = { () => this.handleKeyDown(task.id)}
+              />
+              </li>
             })} 
-     
-        </div>
 
-
-        <div>
-
-
-
-
-
-        </div>
-        
-
-      {/* <!-- These are here just to show the structure of the list items -->
-
-      <!-- List items should get the class `editing` when editing and `completed` when marked as completed --> */}
-
-      {/* <li class="completed">
- 
-        <div class="view">
-                 
-          <input class="toggle" type="checkbox" checked />
-
-          <label>Taste JavaScript</label>
-
-          <button class="destroy"></button>
-
-        </div>
-
-        <input class="edit" value="Create a TodoMVC template" />
-
-      </li>
-      <li>
-
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label>Buy a unicorn</label>
-          <button class="destroy"></button>
-        </div>
-        <input class="edit" value="Rule the web" />
-      </li> */}
     </ul>
   </section>
  

@@ -66,7 +66,7 @@ export function updTask (taskID) {
 export function updatetaskfun(task) {
   return dispatch => {
     return updateTaskAPI(task)
-    .then(()=> dispatch(updTask)(task))
+    .then(()=> dispatch(updTask(task)))
   }
 }
 

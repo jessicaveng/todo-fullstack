@@ -13,16 +13,15 @@ export function addTaskAPI (task) {
     .then(response => response.body)
 }
 
-export function updateTaskAPI (tasks) {
-
-    return request.patch(`/v1/${tasks.id}`)
-      .send(tasks)
+export function updateTaskAPI (task) {
+console.log(task)
+    return request.patch(`/api/v1/${task.editcurrent}`)
+      .send(task)
       .then(res => {
-        validateNoSnakeCase(res.body)
-        validatePostResponse('PATCH', 'v1/:id', res.body)
+        // PostResponse('PATCH', 'v1/:id', res.body)
         return res.body
       })
-      .catch(errorHandler('PATCH', '/v1/:id'))
+      // .catch(errorHandler('PATCH', '/v1/:id'))
   }
 
 export function deltaskAPI (id) {

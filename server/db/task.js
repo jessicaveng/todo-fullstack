@@ -11,10 +11,10 @@ function addTasks (task, db = connection) {
 
 // Update a task, needs to change database, this must change taskDetials
 
-function updateTask(id, updatedTask, db = connection){
-  return db('todo').update(updatedTask).where('id', id)
+function updateTask(id, updatedTask, db = connection){ console.log(updatedTask)
+  return db('Task').update(updatedTask).where('id', id)
 }
-
+// taskDetails
 function deltask (deleteTask, db = connection)
 {
   console.log(deleteTask)

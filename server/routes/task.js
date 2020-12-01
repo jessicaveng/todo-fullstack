@@ -45,7 +45,7 @@ router.delete('/:id', (req,res) => {
 
 router.patch('/:id',(req,res) =>{
  
-	const updatedTask = req.body
+	const updatedTask = {taskDetails: req.body.writeUpdate}
 	const id = req.params.id
   
 	db.updateTask(id, updatedTask)
