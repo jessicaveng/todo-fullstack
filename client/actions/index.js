@@ -49,9 +49,7 @@ export const destroyTask = ( id ) => {
 
 // toggle task
 export const toggleTask = ( task ) => {
-  console.log(task)
   task.completed = !task.completed
-  console.log(task)
   return dispatch => {
       return request
       .put( 'api/v1/todos' )
