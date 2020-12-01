@@ -19,7 +19,8 @@ function Footer (props) {
 
   return (
     <>
-      <span className='filters'><strong>{getCompleted()}</strong>remaining</span>
+      <span className='filters'><strong>{getCompleted()}</strong> remaining tasks</span>
+      <br></br>
       <ul className='filters'>
         <li>
           <NavLink exact to='/' activeClassName= 'selected'>All</NavLink>
@@ -33,6 +34,7 @@ function Footer (props) {
       </ul>
       <button className='clear-completed' onClick={() => setShowPopup(!showPopup)}> Clear Completed</button>
       { showPopup && (<Popup text='Are You Sure You Want To Delete?' confirm={() => deleteTodo(props.todo)} cancel={() => setShowPopup(!showPopup)} />)}
+      {/* Footer buttons/li's need positioning work */}
     </>
   )
 }

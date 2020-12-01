@@ -14,13 +14,16 @@ function TodoItem (props) {
     todo.completed = todo.completed ? 0 : 1
     props.dispatch(updateTodo(todo))
   }
+
   function deleteTodo (todo) {
     props.dispatch(removeTodo(todo))
     setShowPopup(!showPopup)
   }
+
   function onDoubleClick () {
     setDoubleClickEdit(!doubleClickEdit)
   }
+
   return (
     <>
       <li className={props.todo.completed ? 'completed' : ''} key={props.todo.id}>

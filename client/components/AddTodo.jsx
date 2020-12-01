@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createTodo } from '../actions/addTodo' // Make this
+import { createTodo } from '../actions/addTodo'
 
 class AddTodo extends React.Component {
   state = {

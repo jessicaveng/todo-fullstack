@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
-// import { HashRouter as Router} from 'react-dom'
+import Footer from './Footer'
 
 import { Route } from 'react-router-dom'
 
@@ -25,7 +25,7 @@ class App extends React.Component {
           <Route exact path ='/:status' component={TodoList} />
         </section>
         <footer className="footer">
-          {/* <Footer />  */}
+          <Footer />
         </footer>
       </>
     )

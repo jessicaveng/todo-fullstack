@@ -5,6 +5,9 @@ import TodoItem from './TodoItem'
 
 function TodoList (props) {
   function returnProps () {
+    // if status is completed, filter by completed only
+    // if status is active, filter by uncompleted only
+    // else return all todos
     if (props.match.params.status === 'completed') {
       return props.todos.filter(todo => todo.completed === 1)
     } else if (props.match.params.status === 'active') {
