@@ -30,11 +30,11 @@ router.post( '/', ( req, res ) => {
     })
 })
 
-router.put( '/updateTask', (req, res ) => {
+router.put( '/', (req, res ) => {
 
     const task = req.body
 
-    return db.updateTask( task )
+    return db.updateTask( task.id, task )
     .then( updateTodo => {
         res.json( updateTodo )
     })

@@ -1,18 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTasks, destroyTask } from '../actions'
+import { getTasks, destroyTask, toggleTask } from '../actions'
 
-function didComplete(id, props){
-    let completeTask = props.task.find( task => {
-        if (task.id == id){
-            if(task.completed){
-                task.completed = true
-            } else {
-                task.completed = false
-            } return task
-        }
-    })
-}
 
 class ShowTasks extends React.Component {
 
@@ -28,15 +17,16 @@ class ShowTasks extends React.Component {
                     <label htmlFor="toggle-all">Mark all as complete</label>
                     <ul className="todo-list">
                         {this.props.setTasks.map((task) => {
+                              console.log(task)
                             return (
-                                <li key={task.id}>
+                              
+                                <li className={task.completed ? 'completed' : ''} key={task.id}>
                                     <div className="view">
-
                                         <input 
                                         className="toggle" 
                                         type="checkbox"
-                                        onClick={ () => didComplete( task.id, props )} />
-
+                                        onClick={ () => this.props.dispatch(toggleTask(task))}
+                                        />
                                         <label>{task.task}</label>
 
                                         <button 

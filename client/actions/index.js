@@ -14,6 +14,7 @@ export const deleteTask = () => {
     }
 }
 
+// api
 export function getTasks () {
     return dispatch => {
         return request
@@ -44,4 +45,18 @@ export const destroyTask = ( id ) => {
         .then( () => dispatch( getTasks() ))
         .catch( err => console.log( err ))
     }
+}
+
+// toggle task
+export const toggleTask = ( task ) => {
+  console.log(task)
+  task.completed = !task.completed
+  console.log(task)
+  return dispatch => {
+      return request
+      .put( 'api/v1/todos' )
+      .send( task )
+      .then( () => dispatch( getTasks() ))
+      .catch( err => console.log( err ))
+  }
 }

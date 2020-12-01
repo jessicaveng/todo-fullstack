@@ -4,7 +4,7 @@ exports.up = function(knex) {
         table.increments('id')
         table.string('task')
         table.string('priority')
-        table.string('completed')
+        table.boolean('completed')
     })
 };
     
