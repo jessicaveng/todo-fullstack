@@ -1,24 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import AddTodo from './AddTodo';
-import {getToDo} from '../apis/api'
-
+import { getToDo } from '../apis/api';
+import { toggleTaskCompleted, fetchToDos } from '../actions'
 
 class App extends React.Component {
-
-  state = {
-    todos: [],
-  }
-
-  
-  componentDidMount() {
-    getToDo()
-    .then(todos => {
-      this.setState({
-        todos: todos
-      })
-    })
-  }
-  
+	state = {
+		todos: [],
+	};
+	componentDidMount() {
+		// getToDo().then((todos) => {
+		// 	this.setState({ todos: todos });
+		// });
+		this.props.dispatch(fetchToDos())
+		// this.props.dispatch(toggleTaskCompleted(task))
+	}
 
 	render() {
 		return (
@@ -36,35 +32,25 @@ class App extends React.Component {
 
 					<label for="toggle-all">Mark all as complete</label>
 					<ul className="todo-list">
+						{this.props.tasks.map((singleTask) => {
+							return (
+								// <li className="completed">
+								<li className={singleTask.completed === 'true' ? 'completed' : 'view'}>
+									<div className="view">
+										<input
+											className="toggle"
+											type="checkbox"
+											onClick={() => this.toggle(singleTask.id, this.props)}
+											defaultChecked={singleTask.completed}
+										/>
 
-               {this.state.todos.map(singleTask => {
-                 console.log(singleTask)
-                  return(
-
-                  <li className="completed">
-                    <div className="view">
-                      <input className="toggle" type="checkbox" checked />
-                    <label></label>
-                      <button className="destroy"></button>
-                    </div>
-                    <input className="edit" value="Create a TodoMVC template" />
-                  </li>
-                  )}
-                  
-                  )}
-                
-
-
-<li className="">
-							<div className="view">
-								<input className="toggle" type="checkbox" />
-								<label>the task name here</label>
-								<button className="destroy"></button>
-
-								{/* this will be the delete button ()destroy */}
-							</div>
-							<input className="edit" value="the task name here" />
-						</li>
+										<label>{singleTask.task}</label>
+										<button className="destroy"></button>
+									</div>
+									<input className="edit" value="Create a TodoMVC template" />
+								</li>
+							);
+						})}
 					</ul>
 				</section>
 			</>
@@ -72,4 +58,12 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+
+
+
+function mapStateToProps(globalState){
+  return {
+    tasks: globalState.tasks
+  }
+}
+export default connect(mapStateToProps)(App)
