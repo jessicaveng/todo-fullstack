@@ -1,11 +1,42 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-function AddTodo (props) {
-  return (
-    <>
-      <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} />
-    </>
-  )
+import {addTaskToDbAndGlobState} from '../actions/index'
+
+class AddTodo extends React.Component {
+	state = {
+		newTask: '',
+	}
+
+	makeOneBabyTask = (event) => {
+    this.setState({
+      newTask: event.target.value
+    })
+  }
+
+  giveBirth = (event) => {
+
+    event.preventDefault()
+    this.props.dispatch(addTaskToDbAndGlobState(this.state.newTask))
+    this.setState({
+      newTask: ''
+    })
+  }
+
+
+	render() {
+		return (
+			<form onSubmit={this.giveBirth} >
+				<input value={this.state.newTask}
+					className="new-todo"
+          onChange={this.makeOneBabyTask}
+          
+					placeholder="What needs to be done?"
+					autoFocus={true}
+				/>
+			</form>
+		)
+	}
 }
 
-export default AddTodo
+export default connect()(AddTodo)

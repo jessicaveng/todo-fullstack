@@ -1,20 +1,49 @@
-import { getToDoAPI, patchToDoAPI, getAllTodosAPI } from '../apis/api';
+import { getToDoAPI, patchToDoAPI, getAllTodosAPI , createToDoAPI } from '../apis/api';
 import request from 'superagent';
 
 
 /// -------THIS IS THE ACTIONS-------
 
-export const ADD_TASKS = 'ADD_TASKS';
+
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const DELETE_TASKS = 'DELETE_TASKS';
-export const COMPLETED_TASKS = 'COMPLETED_TASKS';
 export const GET_TASKS = 'GET_TASKS'
+export const CREATE_TASK = 'CREATE_TASK'
 
 
-export const addTasks = (id) => {
+export const addTaskToDbAndGlobState = (theNewTask) => {
+  
+  const theNewTaskObject = {
+    task: theNewTask,
+    priority: 'low',
+    completed: 'false'
+  }
+
+  return dispatch => {
+
+    return createToDoAPI(theNewTaskObject)
+      .then((thisThing) => {
+        theNewTaskObject.id = thisThing.id
+        dispatch(createTask(theNewTaskObject))
+      })
+    }
+
+}
+
+export const fetchToDos = () => {
+  return dispatch => {
+
+    return getAllTodosAPI()
+      .then(tasks => {
+        dispatch(setToDos(tasks))
+      })
+  }
+}
+
+export const createTask = (task) => {
 	return {
-		type: ADD_TASKS,
-		id,
+		type: CREATE_TASK,
+		task,
 	};
 };
 
@@ -27,8 +56,9 @@ export const updateTask = (task) => {
 
 export const deletedTasks = (id) => {
 	return {
-    type:DELETE_TASKS,
-		id
+    type: DELETE_TASKS,
+    id
+    
 	};
 };
 
@@ -46,15 +76,7 @@ export const setToDos = (tasks) => {
   }
 }
 
-export const fetchToDos = () => {
-  return dispatch => {
 
-    return getAllTodosAPI()
-      .then(tasks => {
-        dispatch(setToDos(tasks))
-      })
-  }
-}
 
 export const toggleTaskCompleted = (task) => {
   return dispatch => {
@@ -65,3 +87,10 @@ export const toggleTaskCompleted = (task) => {
       })
   }
 };
+
+export function deleteSingleTask(id) {
+  return (dispatch) => {
+    deleteToDoAPI(id)
+      .then(() => dispatch(removeTask(id)))
+  }
+}

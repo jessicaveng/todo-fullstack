@@ -24,11 +24,11 @@ function updateTask(id, updatedTask, db = connection) {
 	//update task on the id that we select
 }
 
+// CRUD D = DELETE
+
 function deleteTask(id, db = connection) {
 	return db('toDoList').delete().where('id', id);
 }
-
-// CRUD D = DELETE
 
 module.exports = {
 	getTodos,

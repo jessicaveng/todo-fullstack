@@ -1,0 +1,33 @@
+
+get tasks is read
+
+
+{
+type: 'UPDATE_TASK',
+task:{
+      id: 1,
+      task: 'wasssg',
+      priority: 'low',
+      completed: 'true'
+    }
+}
+
+
+
+{
+type: 'DELETE_TASKS',
+      id: 1,
+    
+}
+
+
+
+{
+type: 'CREATE_TASK',
+task:{
+      id: 5,
+      task: 'frisgeclean',
+      priority: 'low',
+      completed: 'false'
+    }
+}

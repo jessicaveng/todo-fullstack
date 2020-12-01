@@ -30,7 +30,7 @@ class App extends React.Component {
 
 					{/* CRUD U = UPDATE true or false */}
 
-					<label for="toggle-all">Mark all as complete</label>
+					<label htmlFor="toggle-all">Mark all as complete</label>
 					<ul className="todo-list">
 						{this.props.tasks.map((singleTask) => {
 							return (
